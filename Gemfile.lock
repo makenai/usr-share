@@ -31,6 +31,9 @@ GEM
       activesupport (= 3.0.10)
     activesupport (3.0.10)
     addressable (2.2.6)
+    amazon-ecs (2.2.0)
+      nokogiri (>= 1.4.0)
+      ruby-hmac (>= 0.3.2)
     arel (2.0.10)
     bcrypt-ruby (3.0.1)
     builder (2.1.2)
@@ -133,6 +136,7 @@ GEM
       mime-types (>= 1.16)
     rghost (0.8.7.6)
     rghost_barcode (0.9)
+    ruby-hmac (0.4.0)
     ruby-openid (2.1.8)
     ruby-openid-apps-discovery (1.2.0)
       ruby-openid (>= 2.1.7)
@@ -153,6 +157,7 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
+  amazon-ecs
   devise
   mocha
   nifty-generators

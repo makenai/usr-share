@@ -44,4 +44,8 @@ class MediaController < ApplicationController
     render :action => 'index'
   end
   
+  def import
+    code = params[:upc]
+  end
+  
 end

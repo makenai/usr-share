@@ -1,6 +1,7 @@
 source 'http://rubygems.org'
 
 gem 'rails', '3.0.10'
+gem 'amazon-ecs'
 gem 'rghost'
 gem 'rghost_barcode'
 gem 'omniauth'

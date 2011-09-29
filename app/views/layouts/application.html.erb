@@ -17,7 +17,13 @@
       <%= link_to "Location", locations_path %> |
       <%= link_to "Reserve a Room", rooms_path %> |
       <%= link_to "Recommend a Book", new_recommendation_path %> |
-      Log In |      
+      <% if user_signed_in? %>
+        Signed in as <%= current_user.email %>. Not you?
+        <%= link_to "Sign out", destroy_user_session_path, :method => :delete %>
+      <% else %>
+        <%= link_to "Sign up", new_user_registration_path %> or <%= link_to "Sign in", new_user_session_path %>
+      <% end %>
+      <br />
       <% form_tag search_media_index_path, :method => 'get' do %>
           <%= text_field_tag :search, params[:search] %>
           <%= submit_tag "Search", :name => nil %>

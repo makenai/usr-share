@@ -1,0 +1,12 @@
+<% title "Checkin" %>
+
+<p>
+  <strong>Member:</strong>
+  <%= @checkin.member_id %>
+</p>
+
+<p>
+  <%= link_to "Edit", edit_checkin_path(@checkin) %> |
+  <%= link_to "Destroy", @checkin, :confirm => 'Are you sure?', :method => :delete %> |
+  <%= link_to "View All", checkins_path %>
+</p>

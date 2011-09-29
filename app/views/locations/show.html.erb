@@ -1,0 +1,40 @@
+<% title "Location" %>
+
+<p>
+  <strong>Address 1:</strong>
+  <%= @location.address_1 %>
+</p>
+<p>
+  <strong>Address 2:</strong>
+  <%= @location.address_2 %>
+</p>
+<p>
+  <strong>City:</strong>
+  <%= @location.city %>
+</p>
+<p>
+  <strong>State:</strong>
+  <%= @location.state %>
+</p>
+<p>
+  <strong>Postal:</strong>
+  <%= @location.postal %>
+</p>
+<p>
+  <strong>Country:</strong>
+  <%= @location.country %>
+</p>
+<p>
+  <strong>Phone:</strong>
+  <%= @location.phone %>
+</p>
+<p>
+  <strong>Hours:</strong>
+  <%= @location.hours %>
+</p>
+
+<p>
+  <%= link_to "Edit", edit_location_path(@location) %> |
+  <%= link_to "Destroy", @location, :confirm => 'Are you sure?', :method => :delete %> |
+  <%= link_to "View All", locations_path %>
+</p>

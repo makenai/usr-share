@@ -1,0 +1,8 @@
+<%= form_for @checkin do |f| %>
+  <%= f.error_messages %>
+  <p>
+    <%= f.label :member_id %><br />
+    <%= f.text_field :member_id %>
+  </p>
+  <p><%= f.submit %></p>
+<% end %>

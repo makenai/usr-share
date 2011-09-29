@@ -1,0 +1,36 @@
+<% title "Media" %>
+
+<p>
+  <strong>Type:</strong>
+  <%= @media.type_id %>
+</p>
+<p>
+  <strong>Subcategory:</strong>
+  <%= @media.subcategory_id %>
+</p>
+<p>
+  <strong>Location:</strong>
+  <%= @media.location_id %>
+</p>
+<p>
+  <strong>Title:</strong>
+  <%= @media.title %>
+</p>
+<p>
+  <strong>Isbn:</strong>
+  <%= @media.isbn %>
+</p>
+<p>
+  <strong>Asin:</strong>
+  <%= @media.asin %>
+</p>
+<p>
+  <strong>Description:</strong>
+  <%= @media.description %>
+</p>
+
+<p>
+  <%= link_to "Edit", edit_media_path(@media) %> |
+  <%= link_to "Destroy", @media, :confirm => 'Are you sure?', :method => :delete %> |
+  <%= link_to "View All", media_path %>
+</p>

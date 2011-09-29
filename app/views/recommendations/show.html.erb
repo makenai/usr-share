@@ -1,0 +1,32 @@
+<% title "Recommendation" %>
+
+<p>
+  <strong>Type:</strong>
+  <%= @recommendation.type_id %>
+</p>
+<p>
+  <strong>Title:</strong>
+  <%= @recommendation.title %>
+</p>
+<p>
+  <strong>Isbn:</strong>
+  <%= @recommendation.isbn %>
+</p>
+<p>
+  <strong>Asin:</strong>
+  <%= @recommendation.asin %>
+</p>
+<p>
+  <strong>Description:</strong>
+  <%= @recommendation.description %>
+</p>
+<p>
+  <strong>Url:</strong>
+  <%= @recommendation.url %>
+</p>
+
+<p>
+  <%= link_to "Edit", edit_recommendation_path(@recommendation) %> |
+  <%= link_to "Destroy", @recommendation, :confirm => 'Are you sure?', :method => :delete %> |
+  <%= link_to "View All", recommendations_path %>
+</p>

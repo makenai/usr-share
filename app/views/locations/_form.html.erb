@@ -1,0 +1,36 @@
+<%= form_for @location do |f| %>
+  <%= f.error_messages %>
+  <p>
+    <%= f.label :address_1 %><br />
+    <%= f.text_field :address_1 %>
+  </p>
+  <p>
+    <%= f.label :address_2 %><br />
+    <%= f.text_field :address_2 %>
+  </p>
+  <p>
+    <%= f.label :city %><br />
+    <%= f.text_field :city %>
+  </p>
+  <p>
+    <%= f.label :state %><br />
+    <%= f.text_field :state %>
+  </p>
+  <p>
+    <%= f.label :postal %><br />
+    <%= f.text_field :postal %>
+  </p>
+  <p>
+    <%= f.label :country %><br />
+    <%= f.text_field :country %>
+  </p>
+  <p>
+    <%= f.label :phone %><br />
+    <%= f.text_field :phone %>
+  </p>
+  <p>
+    <%= f.label :hours %><br />
+    <%= f.text_area :hours %>
+  </p>
+  <p><%= f.submit %></p>
+<% end %>

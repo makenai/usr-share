@@ -10,3 +10,4 @@ group :development do
   gem "nifty-generators"
   gem 'sqlite3'
 end
+gem "mocha", :group => :test

@@ -1,0 +1,19 @@
+one:
+  name: MyString
+  description: MyText
+  url: MyString
+  member_id: 1
+  room_id: 1
+  start_time: 2011-09-28 23:29:54
+  duration: 1
+  is_promoted: false
+
+two:
+  name: MyString
+  description: MyText
+  url: MyString
+  member_id: 1
+  room_id: 1
+  start_time: 2011-09-28 23:29:54
+  duration: 1
+  is_promoted: false

@@ -1,0 +1,17 @@
+<% title "Publishers" %>
+
+<table>
+  <tr>
+    <th>Name</th>
+  </tr>
+  <% for publisher in @publishers %>
+    <tr>
+      <td><%= publisher.name %></td>
+      <td><%= link_to "Show", publisher %></td>
+      <td><%= link_to "Edit", edit_publisher_path(publisher) %></td>
+      <td><%= link_to "Destroy", publisher, :confirm => 'Are you sure?', :method => :delete %></td>
+    </tr>
+  <% end %>
+</table>
+
+<p><%= link_to "New Publisher", new_publisher_path %></p>

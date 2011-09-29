@@ -1,0 +1,40 @@
+<% title "Event" %>
+
+<p>
+  <strong>Name:</strong>
+  <%= @event.name %>
+</p>
+<p>
+  <strong>Description:</strong>
+  <%= @event.description %>
+</p>
+<p>
+  <strong>Url:</strong>
+  <%= @event.url %>
+</p>
+<p>
+  <strong>Member:</strong>
+  <%= @event.member_id %>
+</p>
+<p>
+  <strong>Room:</strong>
+  <%= @event.room_id %>
+</p>
+<p>
+  <strong>Start Time:</strong>
+  <%= @event.start_time %>
+</p>
+<p>
+  <strong>Duration:</strong>
+  <%= @event.duration %>
+</p>
+<p>
+  <strong>Is Promoted:</strong>
+  <%= @event.is_promoted %>
+</p>
+
+<p>
+  <%= link_to "Edit", edit_event_path(@event) %> |
+  <%= link_to "Destroy", @event, :confirm => 'Are you sure?', :method => :delete %> |
+  <%= link_to "View All", events_path %>
+</p>

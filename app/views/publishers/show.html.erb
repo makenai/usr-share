@@ -1,0 +1,12 @@
+<% title "Publisher" %>
+
+<p>
+  <strong>Name:</strong>
+  <%= @publisher.name %>
+</p>
+
+<p>
+  <%= link_to "Edit", edit_publisher_path(@publisher) %> |
+  <%= link_to "Destroy", @publisher, :confirm => 'Are you sure?', :method => :delete %> |
+  <%= link_to "View All", publishers_path %>
+</p>

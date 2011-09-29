@@ -1,0 +1,17 @@
+<% title "Members" %>
+
+<table>
+  <tr>
+    <th>User</th>
+  </tr>
+  <% for member in @members %>
+    <tr>
+      <td><%= member.user_id %></td>
+      <td><%= link_to "Show", member %></td>
+      <td><%= link_to "Edit", edit_member_path(member) %></td>
+      <td><%= link_to "Destroy", member, :confirm => 'Are you sure?', :method => :delete %></td>
+    </tr>
+  <% end %>
+</table>
+
+<p><%= link_to "New Member", new_member_path %></p>

@@ -1,0 +1,2 @@
+module MediaTypesHelper
+end

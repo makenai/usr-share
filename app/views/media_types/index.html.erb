@@ -1,0 +1,17 @@
+<% title "Media Types" %>
+
+<table>
+  <tr>
+    <th>Name</th>
+  </tr>
+  <% for media_type in @media_types %>
+    <tr>
+      <td><%= media_type.name %></td>
+      <td><%= link_to "Show", media_type %></td>
+      <td><%= link_to "Edit", edit_media_type_path(media_type) %></td>
+      <td><%= link_to "Destroy", media_type, :confirm => 'Are you sure?', :method => :delete %></td>
+    </tr>
+  <% end %>
+</table>
+
+<p><%= link_to "New Media Type", new_media_type_path %></p>

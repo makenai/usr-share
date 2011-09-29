@@ -1,0 +1,19 @@
+<% title "Media Locations" %>
+
+<table>
+  <tr>
+    <th>Name</th>
+    <th>Available</th>
+  </tr>
+  <% for media_location in @media_locations %>
+    <tr>
+      <td><%= media_location.name %></td>
+      <td><%= media_location.available %></td>
+      <td><%= link_to "Show", media_location %></td>
+      <td><%= link_to "Edit", edit_media_location_path(media_location) %></td>
+      <td><%= link_to "Destroy", media_location, :confirm => 'Are you sure?', :method => :delete %></td>
+    </tr>
+  <% end %>
+</table>
+
+<p><%= link_to "New Media Location", new_media_location_path %></p>

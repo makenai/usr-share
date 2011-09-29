@@ -1,0 +1,16 @@
+<% title "Media Location" %>
+
+<p>
+  <strong>Name:</strong>
+  <%= @media_location.name %>
+</p>
+<p>
+  <strong>Available:</strong>
+  <%= @media_location.available %>
+</p>
+
+<p>
+  <%= link_to "Edit", edit_media_location_path(@media_location) %> |
+  <%= link_to "Destroy", @media_location, :confirm => 'Are you sure?', :method => :delete %> |
+  <%= link_to "View All", media_locations_path %>
+</p>

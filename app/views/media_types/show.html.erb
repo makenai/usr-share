@@ -1,0 +1,12 @@
+<% title "Media Type" %>
+
+<p>
+  <strong>Name:</strong>
+  <%= @media_type.name %>
+</p>
+
+<p>
+  <%= link_to "Edit", edit_media_type_path(@media_type) %> |
+  <%= link_to "Destroy", @media_type, :confirm => 'Are you sure?', :method => :delete %> |
+  <%= link_to "View All", media_types_path %>
+</p>

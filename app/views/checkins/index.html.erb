@@ -1,0 +1,17 @@
+<% title "Checkins" %>
+
+<table>
+  <tr>
+    <th>Member</th>
+  </tr>
+  <% for checkin in @checkins %>
+    <tr>
+      <td><%= checkin.member_id %></td>
+      <td><%= link_to "Show", checkin %></td>
+      <td><%= link_to "Edit", edit_checkin_path(checkin) %></td>
+      <td><%= link_to "Destroy", checkin, :confirm => 'Are you sure?', :method => :delete %></td>
+    </tr>
+  <% end %>
+</table>
+
+<p><%= link_to "New Checkin", new_checkin_path %></p>

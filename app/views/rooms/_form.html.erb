@@ -1,0 +1,12 @@
+<%= form_for @room do |f| %>
+  <%= f.error_messages %>
+  <p>
+    <%= f.label :location_id %><br />
+    <%= f.text_field :location_id %>
+  </p>
+  <p>
+    <%= f.label :capacity %><br />
+    <%= f.text_field :capacity %>
+  </p>
+  <p><%= f.submit %></p>
+<% end %>

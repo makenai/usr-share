@@ -1,0 +1,2 @@
+module MediaLocationsHelper
+end

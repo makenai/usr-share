@@ -11,10 +11,17 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110929132226) do
+ActiveRecord::Schema.define(:version => 20110930144903) do
 
   create_table "authors", :force => true do |t|
     t.string   "name"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "authorships", :force => true do |t|
+    t.integer  "media_id"
+    t.integer  "author_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -54,11 +61,13 @@ ActiveRecord::Schema.define(:version => 20110929132226) do
   create_table "media", :force => true do |t|
     t.integer  "type_id"
     t.integer  "subcategory_id"
+    t.integer  "publisher_id"
     t.integer  "location_id"
     t.string   "title"
     t.string   "isbn"
     t.string   "asin"
     t.text     "description"
+    t.string   "image_url"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -117,6 +126,11 @@ ActiveRecord::Schema.define(:version => 20110929132226) do
     t.datetime "last_sign_in_at"
     t.string   "current_sign_in_ip"
     t.string   "last_sign_in_ip"
+    t.string   "confirmation_token"
+    t.datetime "confirmed_at"
+    t.datetime "confirmation_sent_at"
+    t.string   "name"
+    t.string   "nickname"
     t.datetime "created_at"
     t.datetime "updated_at"
   end

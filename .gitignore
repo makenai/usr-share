@@ -1,4 +1,5 @@
 .bundle
 db/*.sqlite3
 log/*.log
+config/app_config.yml
 tmp/

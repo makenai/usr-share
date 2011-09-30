@@ -1,5 +1,12 @@
 <% title "Media" %>
 
+<% form_tag scan_media_index_path, :method => 'post' do %>
+    <label>Scan UPC or ASIN:
+    <%= text_field_tag :upc, params[:upc] || '0446563048' %>
+    </label>
+    <%= submit_tag "Import", :name => nil %>
+<% end %>
+
 <table>
   <tr>
     <th>Type</th>

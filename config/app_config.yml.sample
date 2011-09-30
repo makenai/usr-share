@@ -1,0 +1,13 @@
+---
+development:
+  aws_tag: ''
+  aws_key: ''
+  aws_secret: ''
+test:
+  aws_tag: ''
+  aws_key: ''
+  aws_secret: ''
+production:
+  aws_tag: ''
+  aws_key: ''
+  aws_secret: ''

@@ -24,7 +24,7 @@ Usrshare::Application.routes.draw do
   resources :media do
     collection do
       get 'search'
-      post 'import'
+      post 'scan'
     end
   end
 

@@ -73,17 +73,3 @@ a {
 .error_messages ul {
   margin: 0;
 }
-
-#menu {
-  text-align: right;
-}
-#menu form { display: inline; }
-
-
-.location {
-  clear:both;
-}
-.location img {
-  float: left;
-  margin-right: 20px;
-}

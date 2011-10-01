@@ -2,3 +2,12 @@
   text-align: right;
 }
 #menu form { display: inline; }
+
+#footer {
+  width: 75%;
+  margin: 0 auto;
+  background-color: #FFF;
+  padding: 10px 40px;
+  border: solid 1px black;
+  margin-top: 10px;
+}

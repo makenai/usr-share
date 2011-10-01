@@ -1,36 +1,23 @@
-<% title "Media" %>
+<% title @media.title %>
 
-<p>
-  <strong>Type:</strong>
-  <%= @media.type_id %>
+<%= image_tag( @media.image_url, :id => 'cover' ) %>
+
+<table>
+  <tr><td>isbn:</td><td><%= @media.isbn %></td></tr>
+  <tr><td>asin:</td><td><%= @media.asin %></td></tr>  
+</table>
+
+<p id="description">
+  <%= raw @media.description %>
 </p>
-<p>
-  <strong>Subcategory:</strong>
-  <%= @media.subcategory_id %>
-</p>
-<p>
-  <strong>Location:</strong>
-  <%= @media.location_id %>
-</p>
-<p>
-  <strong>Title:</strong>
-  <%= @media.title %>
-</p>
-<p>
-  <strong>Isbn:</strong>
-  <%= @media.isbn %>
-</p>
-<p>
-  <strong>Asin:</strong>
-  <%= @media.asin %>
-</p>
-<p>
-  <strong>Description:</strong>
-  <%= @media.description %>
-</p>
+
 
 <p>
   <%= link_to "Edit", edit_media_path(@media) %> |
   <%= link_to "Destroy", @media, :confirm => 'Are you sure?', :method => :delete %> |
   <%= link_to "View All", media_index_path %>
+</p>
+
+<p>
+Comments and social media junk goes here.
 </p>

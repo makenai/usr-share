@@ -1,4 +1,6 @@
 Usrshare::Application.routes.draw do
+  resources :posts
+
   devise_for :users
 
   resources :checkins
@@ -29,6 +31,7 @@ Usrshare::Application.routes.draw do
   end
   
   match '/admin' => 'pages#admin'
+  match '/share' => 'pages#share', :as => :share_page
 
   # The priority is based upon order of creation:
   # first created -> highest priority.

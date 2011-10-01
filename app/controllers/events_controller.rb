@@ -1,5 +1,6 @@
 class EventsController < ApplicationController
   def index
+    @date = params[:month] ? Date.parse("#{params[:month]}-01") : Date.today
     @events = Event.all
   end
 

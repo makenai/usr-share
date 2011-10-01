@@ -3,8 +3,8 @@
 <table>
   <% for media in @media %>
     <tr>
-      <td><%= image_tag media.image_url, :height => 120 %></td>
-      <td><%= media.title %></td>
+      <td><%= link_to image_tag( media.image_url, :height => 120 ), media %></td>
+      <td><%= link_to media.title, media %></td>
       <td>Some Category</td>
       <td><%= media.publisher.name %></td>
       <td><%= media.authors.collect { |a| a.name }.join(', ') %></td>

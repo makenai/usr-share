@@ -2,8 +2,14 @@
 <p>
 <%= form_tag scan_media_index_path, :method => 'post' do %>
     <label>Scan UPC or ASIN (into catalog):
-    <%= text_field_tag :upc, params[:upc] || '0446563048' %>
+    <%= text_field_tag :upc, params[:upc] %>
     </label>
     <%= submit_tag "Import", :name => nil %>
+    
+    <ul>
+      <li><%= link_to 'Authors', authors_path %></li>
+      <li><%= link_to 'Publishers', publishers_path %></li>
+      <li><%= link_to 'Media Locations', media_locations_path %></li>
+    </ul>
 <% end %>
 </p>

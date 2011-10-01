@@ -40,7 +40,8 @@ class MediaController < ApplicationController
   end
   
   def search
-    @media = Media.all
+    term = params[:term]
+    @media = Media.where(["title LIKE :term OR description LIKE :term", { :term => "%#{term}%" }]) 
     render :action => 'index'
   end
   

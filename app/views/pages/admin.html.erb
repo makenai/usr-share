@@ -1,0 +1,9 @@
+<h1>Hasty Admin Page</h1>
+<p>
+<% form_tag scan_media_index_path, :method => 'post' do %>
+    <label>Scan UPC or ASIN (into catalog):
+    <%= text_field_tag :upc, params[:upc] || '0446563048' %>
+    </label>
+    <%= submit_tag "Import", :name => nil %>
+<% end %>
+</p>

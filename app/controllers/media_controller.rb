@@ -53,6 +53,9 @@ class MediaController < ApplicationController
     end
     if response
       item = response.items.first
+      # File.open( Rails.root.join('tmp','response.xml'),'w') do |dump|
+      #   dump.puts response.doc.to_s
+      # end
       media = Media.new(
         :title       => item.get_unescaped('ItemAttributes/Title'),
         :description => item.get_unescaped('EditorialReviews[1]/EditorialReview/Content'),
@@ -64,8 +67,10 @@ class MediaController < ApplicationController
         media.publisher = publisher
       end
       if media.save
-        author = Author.find_or_create_by_name( item.get_unescaped('ItemAttributes/Author') )
-        media.authors << author
+        item.get_elements('ItemAttributes/Author').each do |author_name|
+          author = Author.find_or_create_by_name( author_name.get_unescaped() )
+          media.authors << author
+        end
       end
     end
     redirect_to media_index_url, :notice => "Imported"

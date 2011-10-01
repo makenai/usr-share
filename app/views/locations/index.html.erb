@@ -1,31 +1,22 @@
 <% title "Locations" %>
 
-<table>
-  <tr>
-    <th>Address 1</th>
-    <th>Address 2</th>
-    <th>City</th>
-    <th>State</th>
-    <th>Postal</th>
-    <th>Country</th>
-    <th>Phone</th>
-    <th>Hours</th>
-  </tr>
-  <% for location in @locations %>
-    <tr>
-      <td><%= location.address_1 %></td>
-      <td><%= location.address_2 %></td>
-      <td><%= location.city %></td>
-      <td><%= location.state %></td>
-      <td><%= location.postal %></td>
-      <td><%= location.country %></td>
-      <td><%= location.phone %></td>
-      <td><%= location.hours %></td>
-      <td><%= link_to "Show", location %></td>
-      <td><%= link_to "Edit", edit_location_path(location) %></td>
-      <td><%= link_to "Destroy", location, :confirm => 'Are you sure?', :method => :delete %></td>
-    </tr>
-  <% end %>
-</table>
+<% for location in @locations %>
+<div class="location">
+<a href="http://maps.google.com/?q=<%= location.to_url_param %>"><img src="https://maps.google.com/maps/api/staticmap?center=<%= location.to_url_param %>&zoom=14&size=300x200&maptype=roadmap&markers=color:0xFF4400|<%= location.to_url_param %>&key=ABQIAAAADHJ5HNCptL51yr_DS1fQThRX9Od5DxCcRxlVfWspcT3oqROdIRRf9BLAA_yZys8ohevG-3lPQEtWEQ&sensor=false&style=feature:water|element:all|saturation:30|lightness:49|hue:0xa1cdfc&style=feature:administrative.land_parcel|element:all|visibility:off&style=feature:landscape.man_made|element:all|visibility:off&style=feature:transit|element:all|visibility:off&style=feature:road.local|element:geometry|visibility:simplified&style=feature:road|element:labels|visibility:off|lightness:20&style=feature:road.highway|element:labels|visibility:on&style=feature:road.highway|element:geometry|hue:0xf49935&style=feature:road.arterial|element:labels|visibility:on&style=feature:road.arterial|element:geometry|hue:0xfad959&style=feature:road.local|element:labels|visibility:simplified&style=feature:poi|element:labels|visibility:off" /></a>
+<div class="adr">
+ <div class="street-address"><%= location.address_1 %></div>
+ <div class="extended-address"><%= location.address_2 %></div>
+ <span class="locality"><%= location.city %></span>,
+ <span class="region"><%= location.state %></span>
+ <span class="postal-code"><%= location.postal %></span>
+ <div class="country-name"><%= location.country %></div>
+ <div class="phone"><%= location.phone %></div> 
+ <pre class="hours"><%= location.hours %></pre>
+</div>
+<p><%= link_to "Edit", edit_location_path(location) %>
+| <%= link_to "Destroy", location, :confirm => 'Are you sure?', :method => :delete %>
+| <%= link_to "New Location", new_location_path %></p>
+</div>
+<% end %>
 
-<p><%= link_to "New Location", new_location_path %></p>
+

@@ -27,6 +27,8 @@ Usrshare::Application.routes.draw do
       post 'scan'
     end
   end
+  
+  match '/admin' => 'pages#admin'
 
   # The priority is based upon order of creation:
   # first created -> highest priority.

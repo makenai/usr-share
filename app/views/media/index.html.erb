@@ -1,34 +1,13 @@
 <% title "Media" %>
 
-<% form_tag scan_media_index_path, :method => 'post' do %>
-    <label>Scan UPC or ASIN:
-    <%= text_field_tag :upc, params[:upc] || '0446563048' %>
-    </label>
-    <%= submit_tag "Import", :name => nil %>
-<% end %>
-
 <table>
-  <tr>
-    <th>Type</th>
-    <th>Subcategory</th>
-    <th>Location</th>
-    <th>Title</th>
-    <th>Isbn</th>
-    <th>Asin</th>
-    <th>Description</th>
-  </tr>
   <% for media in @media %>
     <tr>
-      <td><%= media.type_id %></td>
-      <td><%= media.subcategory_id %></td>
-      <td><%= media.location_id %></td>
+      <td><%= image_tag media.image_url, :height => 120 %></td>
       <td><%= media.title %></td>
-      <td><%= media.isbn %></td>
-      <td><%= media.asin %></td>
-      <td><%= media.description %></td>
-      <td><%= link_to "Show", media %></td>
-      <td><%= link_to "Edit", edit_media_path(media) %></td>
-      <td><%= link_to "Destroy", media, :confirm => 'Are you sure?', :method => :delete %></td>
+      <td>Some Category</td>
+      <td><%= media.publisher.name %></td>
+      <td><%= media.authors.collect { |a| a.name }.join(', ') %></td>
     </tr>
   <% end %>
 </table>

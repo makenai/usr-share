@@ -78,3 +78,12 @@ a {
   text-align: right;
 }
 #menu form { display: inline; }
+
+
+.location {
+  clear:both;
+}
+.location img {
+  float: left;
+  margin-right: 20px;
+}

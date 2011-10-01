@@ -18,6 +18,7 @@ gem 'table_builder', :git => 'git://github.com/sashaparfenov/table_builder.git'
 group :development do
   gem "nifty-generators"
   gem 'sqlite3'
+  gem 'heroku'
 end
 
 group :test do

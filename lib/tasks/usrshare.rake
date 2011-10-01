@@ -12,5 +12,15 @@ namespace :usrshare do
       sample.write( YAML.dump(config) )
     end
   end
+  
+  desc "Update heroku configuration"
+  task :update_heroku_config => :environment do
+    # Taken from http://trevorturk.com/2009/06/25/config-vars-and-heroku/
+    puts "Reading config/config.yml and sending config vars to Heroku..."
+    CONFIG = YAML.load_file('config/app_config.yml')['production'] rescue {}
+    command = "heroku config:add"
+    CONFIG.each {|key, val| command << " #{key}=#{val} " if val }
+    system command
+  end
 
 end

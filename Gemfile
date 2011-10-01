@@ -6,6 +6,7 @@ gem 'rghost'
 gem 'rghost_barcode'
 gem 'omniauth'
 gem 'devise'
+gem 'table_builder', :git => 'git://github.com/sashaparfenov/table_builder.git'
 
 group :development do
   gem "nifty-generators"

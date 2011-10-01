@@ -1,3 +1,4 @@
 class Room < ActiveRecord::Base
-  attr_accessible :location_id, :capacity
+  belongs_to :location
+  attr_accessible :name, :location_id, :capacity
 end

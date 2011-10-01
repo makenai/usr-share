@@ -14,9 +14,10 @@
  <pre class="hours"><%= location.hours %></pre>
 </div>
 <p><%= link_to "Edit", edit_location_path(location) %>
-| <%= link_to "Destroy", location, :confirm => 'Are you sure?', :method => :delete %>
-| <%= link_to "New Location", new_location_path %></p>
+| <%= link_to "Destroy", location, :confirm => 'Are you sure?', :method => :delete %></p>
 </div>
 <% end %>
+
+<p><%= link_to "New Location", new_location_path %></p>
 
 

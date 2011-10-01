@@ -46,6 +46,7 @@ ActiveRecord::Schema.define(:version => 20110930144903) do
   end
 
   create_table "locations", :force => true do |t|
+    t.string   "name"
     t.string   "address_1"
     t.string   "address_2"
     t.string   "city"
@@ -109,6 +110,7 @@ ActiveRecord::Schema.define(:version => 20110930144903) do
   end
 
   create_table "rooms", :force => true do |t|
+    t.string   "name"
     t.integer  "location_id"
     t.string   "capacity"
     t.datetime "created_at"

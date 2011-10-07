@@ -1,8 +1,14 @@
-== /usr/share - software to manage small libraries, coworking spaces, and community meetup venues
+    __               __   _                    
+   / /   _ ___ _ __ / /__| |__   __ _ _ __ ___ 
+  / / | | / __| '__/ / __| '_ \ / _` | '__/ _ \
+ / /| |_| \__ \ | / /\__ \ | | | (_| | | |  __/
+/_/  \__,_|___/_|/_/ |___/_| |_|\__,_|_|  \___|
+
+software to manage small libraries, coworking spaces, and community meet-up venues.
 
 Hi there! /usr/share is a project spun off of http://usrlib.org/ and the general Downtown Project in Las Vegas.
 
-Features:
+Planned Features:
 
   * Catalog, manage and search book collections
   * Print labels and barcodes
@@ -13,6 +19,6 @@ Features:
   
 It's still in a very early stage now. It was started on a plane to New Orleans for RubyConf 2011. 
 When complete, we hope it will be a great option for small libraries and community projects like
-coworking and hacker spaces to manage their membership and resources.
+co-working and hacker spaces to manage their membership and resources.
   
   

@@ -5,7 +5,7 @@ class Location < ActiveRecord::Base
   
   # Return the address in a google maps compatible address format
   def to_url_param
-    CGI.escape([ address_1, address_2, city, state, postal, country ].select { |l| !l.empty? }.join(',') )
+    CGI.escape([ address_1, city, state, postal, country ].select { |l| !l.empty? }.join(',') )
   end
   
 end

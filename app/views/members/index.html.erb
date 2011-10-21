@@ -3,10 +3,28 @@
 <table>
   <tr>
     <th>User</th>
+    <th>Name</th>
+    <th>Nickname</th>
+    <th>Address 1</th>
+    <th>Address 2</th>
+    <th>City</th>
+    <th>State</th>
+    <th>Postal</th>
+    <th>Country</th>
+    <th>Phone</th>
   </tr>
   <% for member in @members %>
     <tr>
       <td><%= member.user_id %></td>
+      <td><%= member.name %></td>
+      <td><%= member.nickname %></td>
+      <td><%= member.address_1 %></td>
+      <td><%= member.address_2 %></td>
+      <td><%= member.city %></td>
+      <td><%= member.state %></td>
+      <td><%= member.postal %></td>
+      <td><%= member.country %></td>
+      <td><%= member.phone %></td>
       <td><%= link_to "Show", member %></td>
       <td><%= link_to "Edit", edit_member_path(member) %></td>
       <td><%= link_to "Destroy", member, :confirm => 'Are you sure?', :method => :delete %></td>

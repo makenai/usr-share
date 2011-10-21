@@ -88,6 +88,15 @@ ActiveRecord::Schema.define(:version => 20111001193557) do
 
   create_table "members", :force => true do |t|
     t.integer  "user_id"
+    t.string   "name"
+    t.string   "nickname"
+    t.string   "address_1"
+    t.string   "address_2"
+    t.string   "city"
+    t.string   "state"
+    t.string   "postal"
+    t.string   "country"
+    t.string   "phone"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -138,8 +147,6 @@ ActiveRecord::Schema.define(:version => 20111001193557) do
     t.string   "confirmation_token"
     t.datetime "confirmed_at"
     t.datetime "confirmation_sent_at"
-    t.string   "name"
-    t.string   "nickname"
     t.datetime "created_at"
     t.datetime "updated_at"
   end

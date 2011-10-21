@@ -1,13 +1,22 @@
 <% title "Rooms" %>
 
+<table>
+  <tr>
+    <th>Room Name</th>
+    <th>Location</th>
+    <th>Capacity</th>
+  </tr>
 <% for room in @rooms %>
   <tr>
-    <td><%= room.location_id %></td>
+    <td><%= room.name %></td>
+    <td><%= room.location.name %></td>
     <td><%= room.capacity %></td>
+    <td><%= link_to "Reserve", new_event_path(room_id: room) %></td>
     <td><%= link_to "Show", room %></td>
     <td><%= link_to "Edit", edit_room_path(room) %></td>
     <td><%= link_to "Destroy", room, :confirm => 'Are you sure?', :method => :delete %></td>
   </tr>
 <% end %>
+</table>
 
 <p><%= link_to "New Room", new_room_path %></p>

@@ -18,7 +18,7 @@
   </p>
   <p>
     <%= f.label :room_id %><br />
-    <%= f.text_field :room_id %>
+    <%= select_tag 'event[room_id]', options_for_room_select %>
   </p>
   <p>
     <%= f.label :start_time %><br />

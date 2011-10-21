@@ -68,7 +68,8 @@ class MediaController < ApplicationController
         media.publisher = publisher
       end
       if media.save
-        item.get_elements('ItemAttributes/Author').each do |author_name|
+        authors = item.get_elements('ItemAttributes/Author') || []
+        authors.each do |author_name|
           author = Author.find_or_create_by_name( author_name.get_unescaped() )
           media.authors << author
         end

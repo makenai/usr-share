@@ -1,4 +1,7 @@
 class EventsController < ApplicationController
+
+  before_filter :find_room, only: [:new]
+
   def index
     @date = params[:month] ? Date.parse("#{params[:month]}-01") : Date.today
     @events = Event.all
@@ -38,5 +41,11 @@ class EventsController < ApplicationController
     @event = Event.find(params[:id])
     @event.destroy
     redirect_to events_url, :notice => "Successfully destroyed event."
+  end
+
+  def find_room
+    if params[:room_id]
+      @room = Room.find(params[:room_id])
+    end
   end
 end

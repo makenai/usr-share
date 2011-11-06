@@ -1,4 +1,7 @@
 class LocationsController < ApplicationController
+
+  before_filter :authenticate_admin!, :only => [ :new, :create, :edit, :update, :destroy ]
+
   def index
     @locations = Location.all
   end

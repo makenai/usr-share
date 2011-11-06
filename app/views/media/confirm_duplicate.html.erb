@@ -1,0 +1,12 @@
+<p>Are you sure you want to import this duplicate? There are currently <%= pluralize @duplicate_count, 'copy', 'copies' %> in the database.</p>
+
+<%= image_tag( @media.image_url, :id => 'cover' ) %>
+
+<table>
+  <tr><td>isbn:</td><td><%= @media.isbn %></td></tr>
+  <tr><td>asin:</td><td><%= @media.asin %></td></tr>  
+</table>
+
+<br />
+
+<%= link_to 'Yes', scan_media_index_path( :upc => @media.asin, :duplicate => true ) %> or <%= link_to 'No', admin_path %>

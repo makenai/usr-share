@@ -19,11 +19,17 @@ group :development do
   gem "nifty-generators"
   gem 'sqlite3'
   gem 'heroku'
+  gem 'guard-rspec'
+  gem 'growl_notify'
 end
 
 group :test do
   gem 'turn', :require => false
   gem "mocha"
+end
+
+group :test, :development do
+  gem "rspec-rails", "~> 2.6"
 end
 
 group :production do

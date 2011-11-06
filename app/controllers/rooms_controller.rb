@@ -1,4 +1,7 @@
 class RoomsController < ApplicationController
+  
+  before_filter :authenticate_admin!, :only => [ :new, :create, :edit, :update, :destroy ]
+  
   def index
     @rooms = Room.all
   end

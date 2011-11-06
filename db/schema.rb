@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20111001193557) do
+ActiveRecord::Schema.define(:version => 20111105222827) do
 
   create_table "authors", :force => true do |t|
     t.string   "name"
@@ -22,6 +22,20 @@ ActiveRecord::Schema.define(:version => 20111001193557) do
   create_table "authorships", :force => true do |t|
     t.integer  "media_id"
     t.integer  "author_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "categories", :force => true do |t|
+    t.string   "name"
+    t.string   "code"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "categorizations", :force => true do |t|
+    t.integer  "media_id"
+    t.integer  "subcategory_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -89,7 +103,6 @@ ActiveRecord::Schema.define(:version => 20111001193557) do
   create_table "members", :force => true do |t|
     t.integer  "user_id"
     t.string   "name"
-    t.string   "nickname"
     t.string   "address_1"
     t.string   "address_2"
     t.string   "city"
@@ -99,6 +112,8 @@ ActiveRecord::Schema.define(:version => 20111001193557) do
     t.string   "phone"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "card_number"
+    t.date     "valid_until"
   end
 
   create_table "posts", :force => true do |t|
@@ -133,9 +148,17 @@ ActiveRecord::Schema.define(:version => 20111001193557) do
     t.datetime "updated_at"
   end
 
+  create_table "subcategories", :force => true do |t|
+    t.integer  "category_id"
+    t.string   "name"
+    t.string   "code"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
   create_table "users", :force => true do |t|
-    t.string   "email",                                 :default => "", :null => false
-    t.string   "encrypted_password",     :limit => 128, :default => "", :null => false
+    t.string   "email",                                 :default => "",    :null => false
+    t.string   "encrypted_password",     :limit => 128, :default => "",    :null => false
     t.string   "reset_password_token"
     t.datetime "reset_password_sent_at"
     t.datetime "remember_created_at"
@@ -149,6 +172,8 @@ ActiveRecord::Schema.define(:version => 20111001193557) do
     t.datetime "confirmation_sent_at"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.boolean  "admin",                                 :default => false
+    t.string   "name"
   end
 
   add_index "users", ["email"], :name => "index_users_on_email", :unique => true

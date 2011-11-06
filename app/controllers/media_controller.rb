@@ -1,4 +1,7 @@
 class MediaController < ApplicationController
+
+  before_filter :authenticate_admin!, :only => [ :new, :create, :edit, :update, :destroy ]
+
   def index
     @media = Media.all
   end
@@ -54,28 +57,24 @@ class MediaController < ApplicationController
     end
     if response
       item = response.items.first
-      # File.open( Rails.root.join('tmp','response.xml'),'w') do |dump|
-      #   dump.puts response.doc.to_s
-      # end
-      media = Media.new(
-        :title       => item.get_unescaped('ItemAttributes/Title'),
-        :description => item.get_unescaped('EditorialReviews[1]/EditorialReview/Content'),
-        :isbn        => item.get_unescaped('ItemAttributes/ISBN'),
-        :asin        => item.get_unescaped('ASIN'),
-        :image_url   => item.get_unescaped('LargeImage/URL')
-      )
-      if publisher = Publisher.find_or_create_by_name( item.get_unescaped('ItemAttributes/Publisher') )
-        media.publisher = publisher
-      end
-      if media.save
-        authors = item.get_elements('ItemAttributes/Author') || []
-        authors.each do |author_name|
-          author = Author.find_or_create_by_name( author_name.get_unescaped() )
-          media.authors << author
+      if item
+        @media = Media.from_amazon_item( item )
+        @duplicate_count = Media.where( :asin => @media.asin ).count
+        if @duplicate_count > 0 && !params[:duplicate]
+          return render :action => 'confirm_duplicate'
+        else
+          if @media.save
+            redirect_to admin_path, :notice => "Imported #{@media.title}"
+          else
+            render :action => 'new'
+          end
         end
+      else
+        @error = response.doc.to_s
+        render :file => 'media/error'
       end
     end
-    redirect_to media_index_url, :notice => "Imported"
+    
   end
-  
+     
 end

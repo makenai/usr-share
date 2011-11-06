@@ -12,14 +12,18 @@
       <div id="menu">
       <%= link_to_unless_current "Welcome", root_path %> |
       <%= link_to_unless_current "News", posts_path %> |
+<% nonmember_content do %>
       <%= link_to_unless_current "Become a Member", new_member_path %> |
+<% end %>
       <%= link_to_unless_current "Catalog", media_index_path %> |
       <%= link_to_unless_current "Location", locations_path %> |
-      <%= link_to_unless_current "Events", events_path %> |      
+      <%= link_to_unless_current "Events", events_path %> |
+<% member_content do %>
       <%= link_to_unless_current "Reserve a Room", rooms_path %> |
+<% end %>
       <%= link_to_unless_current "Recommend a Book", new_recommendation_path %> |
       <% if user_signed_in? %>
-        Signed in as <%= current_user.email %>. Not you?
+        Signed in as <%= current_user.name %>. Not you?
         <%= link_to "Sign out", destroy_user_session_path, :method => :delete %>
       <% else %>
         <%= link_to "Sign up", new_user_registration_path %> or <%= link_to "Sign in", new_user_session_path %>
@@ -29,9 +33,11 @@
           <%= text_field_tag :term, params[:term] %>
           <%= submit_tag "Search", :name => nil %>
       <% end %>
+<% admin_content do %>
       | <%= link_to "Admin", admin_path %>
-      </div>
-      <% flash.each do |name, msg| %>
+      <% end %>
+</div>
+    <% flash.each do |name, msg| %>
         <%= content_tag :div, msg, :id => "flash_#{name}" %>
       <% end %>
       <%= content_tag :h1, yield(:title) if show_title? %>

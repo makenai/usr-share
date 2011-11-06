@@ -16,4 +16,6 @@
   <% end %>
 </table>
 
-<p><%= link_to "New Post", new_post_path %></p>
+<% admin_content do %>
+  <p><%= link_to "New Post", new_post_path %></p>
+<% end %>

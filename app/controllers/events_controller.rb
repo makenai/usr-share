@@ -1,6 +1,7 @@
 class EventsController < ApplicationController
 
-  before_filter :find_room, only: [:new]
+  before_filter :authenticate_member!, :only => [ :new, :create, :edit, :update, :destroy ]
+  before_filter :find_room, :only => [ :new ]
 
   def index
     @date = params[:month] ? Date.parse("#{params[:month]}-01") : Date.today

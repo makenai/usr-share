@@ -1,35 +1,23 @@
 Usrshare::Application.routes.draw do
   resources :posts
-
   devise_for :users
-
   resources :checkins
-
   resources :members
-
   resources :events
-
   resources :rooms
-
   resources :locations
-
   resources :recommendations
-
   resources :media_locations
-
   resources :publishers
-
   resources :authors
-
   resources :media_types
-
   resources :media do
     collection do
       get 'search'
       post 'scan'
+      get 'scan'
     end
   end
-  
   match '/admin' => 'pages#admin'
   match '/share' => 'pages#share', :as => :share_page
 

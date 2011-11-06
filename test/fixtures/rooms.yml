@@ -1,7 +1,0 @@
-one:
-  location_id: 1
-  capacity: MyString
-
-two:
-  location_id: 1
-  capacity: MyString

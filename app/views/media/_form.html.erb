@@ -2,15 +2,15 @@
   <%= f.error_messages %>
   <p>
     <%= f.label :type_id %><br />
-    <%= f.text_field :type_id %>
+    <%= f.collection_select :type_id, MediaType.all, :id, :name, :prompt => true %>
   </p>
   <p>
-    <%= f.label :subcategory_id %><br />
-    <%= f.text_field :subcategory_id %>
+    <%= f.label 'Categorization' %><br />
+    <%= f.collection_select :subcategory_id, Subcategory.all( :include => :category ).sort_by(&:full_name), :id, :full_name, :prompt => true %>
   </p>
   <p>
     <%= f.label :location_id %><br />
-    <%= f.text_field :location_id %>
+    <%= f.collection_select :location_id, MediaLocation.all, :id, :name, :prompt => true %>
   </p>
   <p>
     <%= f.label :title %><br />

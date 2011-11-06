@@ -1,0 +1,15 @@
+<% title 'Categorizing' %>
+<p><%= @queue_count %> items left to categorize.</p>
+
+<% if @media %>
+  <%= form_for @media do |f| %>
+    <%= f.label 'Categorization' %><br />
+    <%= f.collection_select :subcategory_id, Subcategory.all( :include => :category ).sort_by(&:full_name), :id, :full_name, :prompt => true %>
+    <p><%= f.submit %></p>  
+  <% end %>
+
+  <%= @media.title %><br />
+  by <%= @media.authors.join(', ') %><br /><br />
+  <%= image_tag( @media.image_url ) %><br /><br />
+  <%= raw @media.description %>
+<% end %>

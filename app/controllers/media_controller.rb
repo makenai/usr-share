@@ -1,6 +1,8 @@
+require 'csv'
+
 class MediaController < ApplicationController
 
-  before_filter :authenticate_admin!, :only => [ :new, :create, :edit, :update, :destroy ]
+  before_filter :authenticate_admin!, :only => [ :new, :create, :edit, :update, :destroy, :import ]
 
   def index
     @media = Media.all
@@ -73,8 +75,41 @@ class MediaController < ApplicationController
         @error = response.doc.to_s
         render :file => 'media/error'
       end
+    end    
+  end
+  
+  def categorize
+    @queue_count = Media.where('subcategory_id IS NULL').count()
+    @media = Media.where('subcategory_id IS NULL').first()
+  end
+  
+  def import
+    csv = CSV.parse( params[:file].read, :headers => true )
+    current_category = nil
+    csv.each do |row|
+      if row[7]
+        if media = amazon_lookup( row[7] )
+          puts media
+          media.save
+        end
+      end
     end
-    
+    render :text => 'Hee'
+  end
+  
+  private
+  
+  def amazon_lookup( code )
+    response = if code.length >= 10
+      Amazon::Ecs.item_lookup( code, :id_type => 'ISBN', :search_index => 'Books', :response_group => 'Large,AlternateVersions' )
+    else
+      Amazon::Ecs.item_lookup( code, :response_group => 'Large' )
+    end
+    if response
+      if item = response.items.first
+        return Media.from_amazon_item( item )    
+      end
+    end
   end
      
 end

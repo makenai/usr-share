@@ -1,0 +1,43 @@
+<% title "Categories" %>
+
+<%= link_to 'Export CSV', export_categories_path %>
+
+<table>
+    <th>Subject</th>
+    <th>Letter Code</th>
+    <th>Number Code</th>
+    <th>Subcategory</th>
+  </tr>
+  <% for category in @categories %>
+    <tr>
+      <td><%= category.name %></td>
+      <td><%= category.code %></td>
+      <td colspan="2">&nbsp;</td>
+      <td><%= link_to "Edit", edit_category_path(category) %></td>
+      <td><%= link_to "Destroy", category, :confirm => 'Are you sure?', :method => :delete %></td>
+    </tr>
+    <% for subcategory in category.subcategories %>
+      <tr>
+        <td colspan="2">&nbsp;</td>
+        <td><%= subcategory.code %></td>
+        <td><%= subcategory.name %></td>
+        <td><%= link_to "Edit", edit_subcategory_path(subcategory) %></td>
+        <td><%= link_to "Destroy", subcategory, :confirm => 'Are you sure?', :method => :delete %></td>
+      </tr>    
+    <% end %>
+    <tr>
+      <td colspan="3">&nbsp;</td>
+      <td><%= link_to "Add Subcategory", new_subcategory_path( :category_id => category.id ) %></td>
+    </tr>
+  <% end %>
+</table>
+
+<p>
+  <%= form_tag import_categories_path, :multipart => true do %>
+    <label for="file">Import CSV file:</label>
+    <%= file_field_tag "file" %>
+    <%= submit_tag 'Upload' %>
+  <% end %>  
+<p>
+
+<p><%= link_to "New Category", new_category_path %></p>

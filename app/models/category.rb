@@ -1,8 +1,6 @@
 class Category < ActiveRecord::Base
+  attr_accessible :name, :code
   has_many :subcategories
-  
-  def index
-    render :text => 'Testing'
-  end
-  
+  validates_uniqueness_of :code
+  default_scope :order => 'code ASC'
 end

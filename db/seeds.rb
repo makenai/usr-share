@@ -9,7 +9,8 @@
 User.create!(
   :name     => "Pawel",
   :email    => "pawel@zappos.com",
-  :password => 'changeme'
+  :password => 'changeme',
+  :admin    => true
 )
 
 usrlib = Location.create!(
@@ -28,3 +29,10 @@ Room.create(
   :location_id => usrlib.id,
   :capacity    => 30
 )
+
+MediaType.create( :name => 'Book' )
+
+MediaLocation.create( :name => 'On Order',   :available => false )
+MediaLocation.create( :name => 'Processing', :available => false )
+MediaLocation.create( :name => 'Shelved',    :available => true )
+

@@ -7,6 +7,8 @@
     <%= submit_tag "Import", :name => nil %>
     
     <ul>
+      <li><%= link_to 'Categorize Media', categorize_media_index_path %></li>      
+      <li><%= link_to 'Categories', categories_path %></li>
       <li><%= link_to 'Authors', authors_path %></li>
       <li><%= link_to 'Publishers', publishers_path %></li>
       <li><%= link_to 'Media Locations', media_locations_path %></li>

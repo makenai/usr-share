@@ -1,4 +1,13 @@
 Usrshare::Application.routes.draw do
+  resources :subcategories, :except => [ :index, :show ]
+
+  resources :categories, :except => [ :show ] do
+    collection do
+      post 'import'
+      get 'export'
+    end
+  end
+
   resources :posts
   devise_for :users
   resources :checkins
@@ -16,6 +25,8 @@ Usrshare::Application.routes.draw do
       get 'search'
       post 'scan'
       get 'scan'
+      get 'categorize'
+      post 'import'
     end
   end
   match '/admin' => 'pages#admin'

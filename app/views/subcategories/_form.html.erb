@@ -1,0 +1,16 @@
+<%= form_for @subcategory do |f| %>
+  <%= f.error_messages %>
+  <p>
+    <%= f.label :category_id %><br />
+    <%= f.collection_select :category_id, Category.all, :id, :name %>
+  </p>
+  <p>
+    <%= f.label :name %><br />
+    <%= f.text_field :name %>
+  </p>
+  <p>
+    <%= f.label :code %><br />
+    <%= f.text_field :code %>
+  </p>
+  <p><%= f.submit %></p>
+<% end %>

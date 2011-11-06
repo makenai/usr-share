@@ -6,10 +6,19 @@
       <td><%= link_to image_tag( media.image_url, :height => 120 ), media %></td>
       <td><%= link_to media.title, media %></td>
       <td>Some Category</td>
-      <td><%= media.publisher.name %></td>
+      <td><%= media.publisher.try(:name) %></td>
       <td><%= media.authors.collect { |a| a.name }.join(', ') %></td>
     </tr>
   <% end %>
 </table>
 
+<% admin_content do %>
 <p><%= link_to "New Media", new_media_path %></p>
+<p>
+  <%= form_tag import_media_index_path, :multipart => true do %>
+    <label for="file">Import Amazon CSV file:</label>
+    <%= file_field_tag "file" %>
+    <%= submit_tag 'Upload' %>
+  <% end %>  
+<p>
+<% end %>

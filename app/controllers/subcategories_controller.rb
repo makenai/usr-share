@@ -2,6 +2,11 @@ class SubcategoriesController < ApplicationController
 
   before_filter :authenticate_admin!
 
+  def index
+    @subcategories = Subcategory.where( :category_id => params[:category_id] )
+    render :layout => false
+  end
+
   def new
     @subcategory = Subcategory.new( params )
   end

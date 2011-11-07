@@ -1,18 +1,30 @@
 <% title 'Categorizing' %>
 <p><%= @queue_count %> items left to categorize.</p>
 
-<%= link_to 'Skip for now', categorize_media_index_url( :skip => params[:skip].to_i + 1 ) %>
-
 <% if @media %>
   <%= form_for @media do |f| %>
     <%= hidden_field_tag :redirect_to, categorize_media_index_url( :skip => params[:skip] ) %>    
-    <%= f.label 'Categorization' %><br />
-    <%= f.collection_select :subcategory_id, Subcategory.all( :include => :category ).sort_by(&:full_name), :id, :full_name, :prompt => true %>
+    <%= f.label 'Category' %><br />
+    <%= f.collection_select :category_id, Category.all, :id, :name_with_code, :prompt => true %><br />
+    <%= f.label 'Subcategory' %><br />
+    <%= f.select :subcategory_id, [] %>
     <p><%= f.submit %></p>  
   <% end %>
 
-  <%= @media.title %><br />
+  <p><%= link_to 'Skip for now >>', categorize_media_index_url( :skip => params[:skip].to_i + 1 ) %></p>
+
+  <h1><%= @media.title %></h1>
   by <%= @media.authors.join(', ') %><br /><br />
+  
+  <p>
+    <% @media.amazon_categories.each do |category| %>
+      <% category.each_with_index do |node,i| %>
+        <%= node[:name] %><% if i < category.length - 1 %> &gt;<% end %>
+      <% end %>
+      <br />
+    <% end %>
+  </p>
+  
   <%= image_tag( @media.image_url ) %><br /><br />
   <%= raw @media.description %>
 <% end %>

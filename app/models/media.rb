@@ -1,9 +1,10 @@
 class Media < ActiveRecord::Base
   belongs_to :publisher
+  belongs_to :subcategory
   has_many :authorships, :dependent => :destroy
   has_many :authors, :through => :authorships
   accepts_nested_attributes_for :authorships  
-    
+
   attr_accessible :type_id, :subcategory_id, :location_id, :title, :publisher_id, :isbn, :asin, 
     :description, :image_url, :copy_number, :authorships_attributes, :authors_attributes
   validates_uniqueness_of :asin, :scope => :copy_number
@@ -35,5 +36,55 @@ class Media < ActiveRecord::Base
     read_attribute(:image_url) || 'default_media.png'
   end
   
+  class LookupException < Exception; end
   
+  def self.get_amazon_response( code )
+    if code.length >= 10
+      return Amazon::Ecs.item_lookup( code, :id_type => 'ISBN', :search_index => 'Books', :response_group => 'Large,AlternateVersions' )
+    else
+      return Amazon::Ecs.item_lookup( code, :response_group => 'Large' )
+    end
+  rescue Exception => e
+    raise LookupException.new( e.message )    
+  end
+  
+  def self.amazon_lookup( code )
+    response = self.get_amazon_response( code )
+    if item = response.items.first
+      return self.from_amazon_item( item )
+    else
+      raise LookupException.new( response.doc.to_s )
+    end
+  end
+  
+  def amazon_categories
+    categories = []
+    response = self.class.get_amazon_response( self.asin || self.isbn )
+    puts response.doc.to_s
+    item = response.items.first
+    return categories unless item
+    if nodes = item.get_elements('BrowseNodes/BrowseNode')
+      nodes.each do |node|
+        node_ancestry = [{
+          :name    => node.get_unescaped('Name'),
+          :node_id => node.get('BrowseNodeId')
+        }]
+        current_node = node
+        while next_node = current_node.get_element('Ancestors/BrowseNode')
+          node_ancestry.unshift({
+            :name    => next_node.get_unescaped('Name'),
+            :node_id => next_node.get('BrowseNodeId')
+          })
+          current_node = next_node
+        end
+        categories << node_ancestry
+      end
+    end
+    return categories
+  end
+  
+  def category_id
+    subcategory.try(:category_id)
+  end
+
 end

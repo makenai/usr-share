@@ -17,11 +17,12 @@ class EventsController < ApplicationController
   end
 
   def new
-    @event = Event.new
+    @event = Event.new( :duration => 1 )
   end
 
   def create
     @event = Event.new(params[:event])
+    @event.member_id = current_user.member.id
     if @event.save
       redirect_to @event, :notice => "Successfully created event."
     else

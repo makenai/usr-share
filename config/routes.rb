@@ -1,5 +1,5 @@
 Usrshare::Application.routes.draw do
-  resources :subcategories, :except => [ :index, :show ]
+  resources :subcategories, :except => [ :show ]
 
   resources :categories, :except => [ :show ] do
     collection do

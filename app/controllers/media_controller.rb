@@ -55,13 +55,13 @@ class MediaController < ApplicationController
   end
   
   def scan
-    @media = amazon_lookup( params[:upc] )
+    @media = Media.amazon_lookup( params[:upc] )
     if @media.save
       redirect_to admin_path, :notice => "Imported #{@media.title}"
     else
       render :action => 'new'
     end
-  rescue LookupException => e
+  rescue Media::LookupException => e
     @error = e.message
     render :file => 'media/error'
   end
@@ -78,39 +78,18 @@ class MediaController < ApplicationController
     csv.each do |row|
       if row[7]
         begin
-          if media = amazon_lookup( row[7] )
+          if media = Media.amazon_lookup( row[7] )
             media.location_id = on_order.try(:id)
             if media.save
               count += 1
             end
           end
-        rescue LookupException => e
+        rescue Media::LookupException => e
           puts e.message
         end
       end
     end
     redirect_to media_index_url, :notice => "Imported #{count} items."
   end
-  
-  private
-  
-  class LookupException < Exception; end
-  
-  def amazon_lookup( code )
-    response = if code.length >= 10
-      Amazon::Ecs.item_lookup( code, :id_type => 'ISBN', :search_index => 'Books', :response_group => 'Large,AlternateVersions' )
-    else
-      Amazon::Ecs.item_lookup( code, :response_group => 'Large' )
-    end
-    if response
-      if item = response.items.first
-        return Media.from_amazon_item( item )
-      else
-        raise LookupException.new( response.doc.to_s )
-      end
-    end
-  rescue Exception => e
-    raise LookupException.new( e.message )
-  end
-     
+       
 end

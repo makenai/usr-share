@@ -1,0 +1,3 @@
+<% @subcategories.each do |subcategory| %>
+<option value="<%= subcategory.id %>"><%= subcategory.code %> (<%= subcategory.name %>)</option>
+<% end %>

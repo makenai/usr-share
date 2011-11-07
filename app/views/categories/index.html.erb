@@ -21,6 +21,7 @@
         <td colspan="2">&nbsp;</td>
         <td><%= subcategory.code %></td>
         <td><%= subcategory.name %></td>
+        <td><%= link_to "#{subcategory.media.count}", media_index_path %></td>
         <td><%= link_to "Edit", edit_subcategory_path(subcategory) %></td>
         <td><%= link_to "Destroy", subcategory, :confirm => 'Are you sure?', :method => :delete %></td>
       </tr>    

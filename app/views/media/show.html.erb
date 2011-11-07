@@ -1,6 +1,10 @@
 <% title @media.title %>
 
-<%= image_tag( @media.image_url, :id => 'cover' ) %>
+<% @media.authors.each do |author| %>
+  <%= author.name %><br />
+<% end %>
+
+<%= image_tag( @media.image_url ) %>
 
 <table>
   <tr><td>isbn:</td><td><%= @media.isbn %></td></tr>

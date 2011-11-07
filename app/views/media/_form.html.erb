@@ -1,6 +1,34 @@
 <%= form_for @media do |f| %>
   <%= f.error_messages %>
   <p>
+    <%= f.label :title %><br />
+    <%= f.text_field :title %>
+  </p>
+  <p>
+    <%= f.label :isbn %><br />
+    <%= f.text_field :isbn %>
+  </p>
+  <p>
+    <%= f.label :publisher_id %><br />
+    <%= f.collection_select :publisher_id, Publisher.all, :id, :name, :prompt => true %>
+  </p>
+
+  <%= f.fields_for :authorships do |a| %>
+    <p>
+      <%= a.label :author_id %><br />
+      <%= a.collection_select :author_id, Author.all, :id, :name, :prompt => true %>
+    </p>
+  <% end %>
+      
+  <p>
+    <%= f.label :asin %><br />
+    <%= f.text_field :asin %>
+  </p>
+  <p>
+    <%= f.label :copy_number %><br />
+    <%= f.number_field :copy_number %>
+  </p>
+  <p>
     <%= f.label :type_id %><br />
     <%= f.collection_select :type_id, MediaType.all, :id, :name, :prompt => true %>
   </p>
@@ -13,16 +41,8 @@
     <%= f.collection_select :location_id, MediaLocation.all, :id, :name, :prompt => true %>
   </p>
   <p>
-    <%= f.label :title %><br />
-    <%= f.text_field :title %>
-  </p>
-  <p>
-    <%= f.label :isbn %><br />
-    <%= f.text_field :isbn %>
-  </p>
-  <p>
-    <%= f.label :asin %><br />
-    <%= f.text_field :asin %>
+    <%= f.label :image_url %><br />
+    <%= f.text_field :image_url %>
   </p>
   <p>
     <%= f.label :description %><br />

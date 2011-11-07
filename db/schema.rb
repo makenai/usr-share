@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20111105222827) do
+ActiveRecord::Schema.define(:version => 20111106142507) do
 
   create_table "authors", :force => true do |t|
     t.string   "name"
@@ -85,6 +85,7 @@ ActiveRecord::Schema.define(:version => 20111105222827) do
     t.string   "image_url"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "copy_number",    :default => 1, :null => false
   end
 
   create_table "media_locations", :force => true do |t|
@@ -113,7 +114,7 @@ ActiveRecord::Schema.define(:version => 20111105222827) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.string   "card_number"
-    t.date     "valid_until"
+    t.datetime "valid_until"
   end
 
   create_table "posts", :force => true do |t|

@@ -1,8 +1,11 @@
 <% title 'Categorizing' %>
 <p><%= @queue_count %> items left to categorize.</p>
 
+<%= link_to 'Skip for now', categorize_media_index_url( :skip => params[:skip].to_i + 1 ) %>
+
 <% if @media %>
   <%= form_for @media do |f| %>
+    <%= hidden_field_tag :redirect_to, categorize_media_index_url( :skip => params[:skip] ) %>    
     <%= f.label 'Categorization' %><br />
     <%= f.collection_select :subcategory_id, Subcategory.all( :include => :category ).sort_by(&:full_name), :id, :full_name, :prompt => true %>
     <p><%= f.submit %></p>  

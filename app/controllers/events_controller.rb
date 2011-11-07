@@ -5,7 +5,11 @@ class EventsController < ApplicationController
 
   def index
     @date = params[:month] ? Date.parse("#{params[:month]}-01") : Date.today
-    @events = Event.all
+    @events = Event.where( 'start_time > :cutoff', :cutoff => Time.now - 1.month ).order('start_time DESC').to_a
+    respond_to do |format|
+      format.html
+      format.ics { render :text => render_ics( @events ) }
+    end
   end
 
   def show
@@ -49,4 +53,21 @@ class EventsController < ApplicationController
       @room = Room.find(params[:room_id])
     end
   end
+  
+  private
+  
+  def render_ics( events )
+    return RiCal.Calendar do
+      events.each do |e|
+        event do
+          summary     e.name
+          description e.description
+          dtstart     e.start_time
+          dtend       e.start_time + e.duration.hours
+          location    "#{e.room.location.name} - #{e.room.name}"
+        end
+      end
+    end
+  end
+  
 end

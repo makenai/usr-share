@@ -12,6 +12,8 @@
   <% end %>
 </table>
 
+<%= paginate @media %>
+
 <% admin_content do %>
 <p><%= link_to "New Media", new_media_path %></p>
 <p>

@@ -14,6 +14,8 @@ gem 'rghost_barcode'
 gem 'omniauth'
 gem 'devise'
 gem 'table_builder', :git => 'git://github.com/sashaparfenov/table_builder.git'
+gem 'kaminari'
+gem 'ri_cal'
 
 group :development do
   gem "nifty-generators"

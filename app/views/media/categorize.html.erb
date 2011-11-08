@@ -2,19 +2,42 @@
 <p><%= @queue_count %> items left to categorize.</p>
 
 <% if @media %>
+<table class="categorization">
+<tr>
+  <td>
   <%= form_for @media do |f| %>
-    <%= hidden_field_tag :redirect_to, categorize_media_index_url( :skip => params[:skip] ) %>    
+    <%= hidden_field_tag :redirect_to, categorize_media_index_url( params ) %>    
     <%= f.label 'Category' %><br />
     <%= f.collection_select :category_id, Category.all, :id, :name_with_code, :prompt => true %><br />
     <%= f.label 'Subcategory' %><br />
     <%= f.select :subcategory_id, [] %>
     <p><%= f.submit %></p>  
   <% end %>
+  </td>
+  <td>
+    <%= form_for Category.new, html: { id: 'quick_category' } do |f| %>
+      <%= f.label 'New Category' %><br />
+      <%= f.text_field :code, size: 5, placeholder: "Code" %> <%= f.text_field :name, placeholder: "Name" %>
+      <%= f.submit %>
+    <% end %>
+    <%= form_for Subcategory.new, html: { id: 'quick_subcategory' } do |f| %>
+      <%= f.label 'New Subcategory' %><br />
+      <%= f.hidden_field :category_id %>
+      <%= f.text_field :code, size: 5, placeholder: "Code" %> <%= f.text_field :name, placeholder: "Name" %>
+      <%= f.submit %>      
+    <% end %>
+  </td>
+</tr>
+</table>
 
-  <p><%= link_to 'Skip for now >>', categorize_media_index_url( :skip => params[:skip].to_i + 1 ) %></p>
+  <p><%= link_to 'Skip for now >>', categorize_media_index_url( params.merge( :skip => params[:skip].to_i + 1 ) ) %></p>
 
   <h1><%= @media.title %></h1>
   by <%= @media.authors.join(', ') %><br /><br />
+  
+  <% if @media.subcategory %>
+    <b>Current category: <%= @media.subcategory.full_name %></b>
+  <% end %>
   
   <p>
     <% @media.amazon_categories.each do |category| %>
@@ -24,6 +47,8 @@
       <br />
     <% end %>
   </p>
+  
+  <p>ASIN: <%= @media.asin %></p>
   
   <%= image_tag( @media.image_url ) %><br /><br />
   <%= raw @media.description %>

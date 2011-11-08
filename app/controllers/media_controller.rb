@@ -5,7 +5,11 @@ class MediaController < ApplicationController
   before_filter :authenticate_admin!, :only => [ :new, :create, :edit, :update, :destroy, :import ]
 
   def index
-    @media = Media.order('title ASC').includes(:publisher,:authors).page( params[:page] )
+    media_query = Media.order('title ASC').includes(:publisher,:authors)
+    if params[:subcategory_id]
+      media_query = media_query.where( 'subcategory_id = :subcategory_id', subcategory_id: params[:subcategory_id] )
+    end
+    @media = media_query.page( params[:page] )
   end
 
   def show
@@ -67,8 +71,15 @@ class MediaController < ApplicationController
   end
   
   def categorize
-    @queue_count = Media.where('subcategory_id IS NULL').count()
-    @media = Media.where('subcategory_id IS NULL').offset( params[:skip].to_i ).first
+    media_query = params[:subcategory_id] ? 
+      Media.where('subcategory_id = :subcategory_id', subcategory_id: params[:subcategory_id] ) : 
+      Media.where('subcategory_id IS NULL')
+    media_query = media_query.order('asin ASC')
+    if params[:start]
+      media_query = media_query.where( 'asin > :asin', asin: params[:start] )
+    end
+    @queue_count = media_query.count()
+    @media = media_query.offset( params[:skip].to_i ).first
   end
   
   def import

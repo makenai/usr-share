@@ -60,7 +60,6 @@ class Media < ActiveRecord::Base
   def amazon_categories
     categories = []
     response = self.class.get_amazon_response( self.asin || self.isbn )
-    puts response.doc.to_s
     item = response.items.first
     return categories unless item
     if nodes = item.get_elements('BrowseNodes/BrowseNode')

@@ -14,9 +14,17 @@ class SubcategoriesController < ApplicationController
   def create
     @subcategory = Subcategory.new(params[:subcategory])
     if @subcategory.save
-      redirect_to categories_url, :notice => "Successfully created subcategory."
+      if request.xhr?
+        render :json => @subcategory
+      else
+        redirect_to categories_url, :notice => "Successfully created subcategory."
+      end
     else
-      render :action => 'new'
+      if request.xhr?
+        render :json => { error: @subcategory.errors.to_a.join(', ') }
+      else
+        render :action => 'new'
+      end
     end
   end
 

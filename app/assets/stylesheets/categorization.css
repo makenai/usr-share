@@ -1,0 +1,7 @@
+.categorization td {
+  vertical-align: top;
+}
+
+.categorization #quick_subcategory {
+  display: none;
+}

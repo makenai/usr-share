@@ -15,9 +15,17 @@ class CategoriesController < ApplicationController
   def create
     @category = Category.new(params[:category])
     if @category.save
-      redirect_to categories_url, :notice => "Successfully created category."
+      if request.xhr?
+        render :json => @category
+      else
+        redirect_to categories_url, :notice => "Successfully created category."
+      end
     else
-      render :action => 'new'
+      if request.xhr?
+        render :json => { error: @category.errors.to_a.join(', ') }
+      else
+        render :action => 'new'
+      end
     end
   end
 

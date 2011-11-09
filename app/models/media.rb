@@ -89,7 +89,7 @@ class Media < ActiveRecord::Base
   
   def label
     return [ '', '', '' ] unless subcategory
-    [ subcategory.category.code, subcategory.code, authors && authors.first.short ]
+    [ subcategory.category.code, subcategory.code, authors.nil? '' : authors.first.short ]
   end
 
 end

@@ -21,7 +21,7 @@ $(function() {
         alert( data.error );
       } else {
         $('#media_category_id').append('<option value="' + data.category.id + '">' + data.category.code + 
-          ' - ' + data.category.name + '</option>').val( data.category.id );
+          ' - ' + data.category.name + '</option>').val( data.category.id ).change();
         $('input[type="text"]', form).val('');
       }
     });

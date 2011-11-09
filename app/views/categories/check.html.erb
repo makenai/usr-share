@@ -1,0 +1,19 @@
+<ul>
+<% Category.all.each do |category| %>
+  <li><%= link_to category.code, edit_category_path( category ) %> - <%= category.name %>
+    <ul>
+      <% category.subcategories.each do |subcategory| %>
+        <% if subcategory.media.count > 0 %>
+        <li><%= link_to subcategory.code, edit_subcategory_path( subcategory ) %> - <%= subcategory.name %> (<%= link_to 'Recategorize', categorize_media_index_path( subcategory_id: subcategory.id ) %>)
+          <ul>
+            <% subcategory.media.each do |media| %>
+              <li><%= link_to media.title, media %></li>
+            <% end %>
+          </ul>
+        </li>
+        <% end %>
+      <% end %>
+    </ul>
+  </li>
+<% end %>
+</ul>

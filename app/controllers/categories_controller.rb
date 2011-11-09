@@ -79,4 +79,7 @@ class CategoriesController < ApplicationController
     send_data( csv, :filename => 'categories.csv', :type => 'text/csv' )
   end
   
+  def contents
+  end
+  
 end

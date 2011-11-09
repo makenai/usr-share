@@ -5,6 +5,7 @@ Usrshare::Application.routes.draw do
     collection do
       post 'import'
       get 'export'
+      get 'check'
     end
   end
 
@@ -27,6 +28,7 @@ Usrshare::Application.routes.draw do
       get 'scan'
       get 'categorize'
       post 'import'
+      get 'inventory'
     end
   end
   match '/admin' => 'pages#admin'

@@ -3,7 +3,8 @@ class Media < ActiveRecord::Base
   belongs_to :subcategory
   has_many :authorships, :dependent => :destroy
   has_many :authors, :through => :authorships
-  accepts_nested_attributes_for :authorships  
+  accepts_nested_attributes_for :authorships
+  default_scope :order => 'title ASC'
 
   attr_accessible :type_id, :subcategory_id, :location_id, :title, :publisher_id, :isbn, :asin, 
     :description, :image_url, :copy_number, :authorships_attributes, :authors_attributes
@@ -84,6 +85,11 @@ class Media < ActiveRecord::Base
   
   def category_id
     subcategory.try(:category_id)
+  end
+  
+  def label
+    return [ '', '', '' ] unless subcategory
+    [ subcategory.category.code, subcategory.code, authors && authors.first.short ]
   end
 
 end

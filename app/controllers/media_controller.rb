@@ -102,5 +102,20 @@ class MediaController < ApplicationController
     end
     redirect_to media_index_url, :notice => "Imported #{count} items."
   end
+  
+  def inventory
+    respond_to do |format|
+      format.html
+      format.csv do
+        csv = CSV.generate do |csv|
+          csv << [ 'cat', 'subcat', 'auth', 'title', 'author' ]
+          Media.all.each do |media|
+            csv << [ *media.label, media.title, media.authors.try(:first) ]
+          end
+        end
+        render :text => csv
+      end
+    end
+  end
        
 end

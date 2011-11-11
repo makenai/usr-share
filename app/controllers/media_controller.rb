@@ -124,8 +124,8 @@ class MediaController < ApplicationController
     @media = Media.where('subcategory_id IS NOT NULL').includes( :subcategory )
     doc = Prawn::Labels.generate( @media, :type => "3M3100P" ) do |pdf, media, info|
       # Black Background
-      pdf.fill_color( '000000' )
-      pdf.fill_rectangle [ 0, 0 ], info[:width], 0 - info[:height]
+      # pdf.fill_color( '000000' )
+      # pdf.fill_rectangle [ 0, 0 ], info[:width], 0 - info[:height]
       
       # Color Strip
       pdf.fill_color( media.subcategory.category.color || 'ff00ff' )
@@ -141,13 +141,13 @@ class MediaController < ApplicationController
       end
         
       # Text
-      pdf.fill_color( 'FFFFFF' )
+      pdf.fill_color( '000000' )
       pdf.font("Helvetica")
       pdf.font_size(10)
-      pdf.move_down 18.5
+      pdf.move_down 17.5
       media.label.each do |label|
         pdf.move_up 2
-        pdf.text label, :align => :center, :character_spacing => 1        
+        pdf.text label, :align => :center, :character_spacing => 1, :style => :bold
       end
     end    
     send_data doc.render, filename: "labels.pdf",

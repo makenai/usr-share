@@ -121,7 +121,7 @@ class MediaController < ApplicationController
   end
 
   def labels
-    @media = Media.where('subcategory_id IS NOT NULL').includes( :subcategory )
+    @media = Media.where('subcategory_id IS NOT NULL').includes( :subcategory ).sort { |a,b| a.label.to_s <=> b.label.to_s }
     doc = Prawn::Labels.generate( @media, :type => "3M3100P" ) do |pdf, media, info|
       # Black Background
       # pdf.fill_color( '000000' )
@@ -129,7 +129,7 @@ class MediaController < ApplicationController
       
       # Color Strip
       pdf.fill_color( media.subcategory.category.color || 'ff00ff' )
-      pdf.fill_rectangle [ 0, info[:height] ], info[:width], 9
+      pdf.fill_rectangle [ 0, info[:height] - 6], info[:width], 3
 
       shape = media.subcategory.category.shape
       # Shapes

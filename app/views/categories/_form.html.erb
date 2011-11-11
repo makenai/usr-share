@@ -8,5 +8,13 @@
     <%= f.label :code %><br />
     <%= f.text_field :code %>
   </p>
+  <p>
+    <%= f.label :shape %><br />
+    <%= f.select :shape, Category::LABEL_SHAPES.sort, prompt: true %>
+  </p>
+  <p>
+    <%= f.label :color %><br />
+    <%= f.select :color, Category::LABEL_COLORS.sort, prompt: true %>
+  </p>  
   <p><%= f.submit %></p>
 <% end %>

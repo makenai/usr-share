@@ -16,6 +16,7 @@ gem 'devise'
 gem 'table_builder', :git => 'git://github.com/sashaparfenov/table_builder.git'
 gem 'kaminari'
 gem 'ri_cal'
+gem "prawn-labels", :git => 'git://github.com/makenai/prawn-labels.git'
 
 group :development do
   gem "nifty-generators"

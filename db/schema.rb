@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20111106142507) do
+ActiveRecord::Schema.define(:version => 20111111000508) do
 
   create_table "authors", :force => true do |t|
     t.string   "name"
@@ -31,6 +31,8 @@ ActiveRecord::Schema.define(:version => 20111106142507) do
     t.string   "code"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "shape"
+    t.string   "color"
   end
 
   create_table "categorizations", :force => true do |t|

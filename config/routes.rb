@@ -29,6 +29,7 @@ Usrshare::Application.routes.draw do
       get 'categorize'
       post 'import'
       get 'inventory'
+      get 'labels'
     end
   end
   match '/admin' => 'pages#admin'

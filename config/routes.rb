@@ -6,6 +6,7 @@ Usrshare::Application.routes.draw do
       post 'import'
       get 'export'
       get 'check'
+      get 'labels'
     end
   end
 

@@ -1,3 +1,5 @@
+require 'prawn/labels'
+require 'shapes'
 require 'csv'
 
 class CategoriesController < ApplicationController
@@ -78,6 +80,56 @@ class CategoriesController < ApplicationController
     end
     send_data( csv, :filename => 'categories.csv', :type => 'text/csv' )
   end
+  
+  def labels
+    @categories = Category.all
+    doc = Prawn::Labels.generate( @categories, :type => "SHELF" ) do |pdf, category, info|
+        pdf.stroke_bounds
+        pdf.fill_color(category.color)
+        pdf.send("#{category.shape}_shape")
+        pdf.fill_color( '000000' )
+        pdf.font("Helvetica")
+        pdf.font_size(40)
+        pdf.move_down 20
+        pdf.text category.to_s, :align => :center, :character_spacing => 1, :style => :bold
+    end
+    send_data doc.render, filename: "labels.pdf",
+                          type: "application/pdf",
+                          disposition: "inline"    
+    # @media = Media.where('subcategory_id IS NOT NULL').includes( :subcategory ).sort { |a,b| a.label.to_s <=> b.label.to_s }
+    # doc = Prawn::Labels.generate( @media, :type => "3M3100P" ) do |pdf, media, info|
+    #   # Black Background
+    #   # pdf.fill_color( '000000' )
+    #   # pdf.fill_rectangle [ 0, 0 ], info[:width], 0 - info[:height]
+    #   
+    #   # Color Strip
+    #   pdf.fill_color( media.subcategory.category.color || 'ff00ff' )
+    #   pdf.fill_rectangle [ 0, info[:height] - 6], info[:width], 3
+    # 
+    #   shape = media.subcategory.category.shape
+    #   # Shapes
+    #   pdf.translate( 0, -3.5 ) do
+    #     pdf.send("#{shape}_shape")
+    #   end
+    #   pdf.translate( info[:width] - 45.36, -3.5 ) do
+    #     pdf.send("#{shape}_shape")
+    #   end
+    #     
+    #   # Text
+    #   pdf.fill_color( '000000' )
+    #   pdf.font("Helvetica")
+    #   pdf.font_size(10)
+    #   pdf.move_down 17.5
+    #   media.label.each do |label|
+    #     pdf.move_up 2
+    #     pdf.text label, :align => :center, :character_spacing => 1, :style => :bold
+    #   end
+    # end    
+    # send_data doc.render, filename: "labels.pdf",
+    #                       type: "application/pdf",
+    #                       disposition: "inline"
+  end
+  
   
   def contents
   end

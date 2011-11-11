@@ -1,8 +1,8 @@
 GIT
   remote: git://github.com/makenai/prawn-labels.git
-  revision: da9dd1d114fb7f39095d3bc39469c42b26b1104c
+  revision: 95cbaa8cfc94d00595d25eea0d23e3e5914852a0
   specs:
-    prawn-labels (0.11.3)
+    prawn-labels (0.11.4)
       prawn (~> 0.12.0)
 
 GIT

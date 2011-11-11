@@ -17,6 +17,7 @@ gem 'table_builder', :git => 'git://github.com/sashaparfenov/table_builder.git'
 gem 'kaminari'
 gem 'ri_cal'
 gem "prawn-labels", :git => 'git://github.com/makenai/prawn-labels.git'
+# gem "prawn-labels", :path => '~/Projects/prawn-labels'
 
 group :development do
   gem "nifty-generators"

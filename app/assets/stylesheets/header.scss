@@ -1,0 +1,27 @@
+#header {
+  position: relative;
+}
+
+#header h1 {
+  background-image: url('usrlib.png');
+  width: 201px;
+  height: 93px;
+  overflow: hidden;
+  margin-left: 20px;
+  margin-top: 20px;
+  text-indent: 100%;
+}
+
+#header #signup {
+  position: absolute;
+  top: 50%;
+  right: 0px;
+  width: 300px;
+  text-align: right;
+  font-style: italic;
+  a {
+    font-family: franklin-gothic-urw,sans-serif;
+    font-size: 1.2em;  
+    font-style: normal;
+  }
+}

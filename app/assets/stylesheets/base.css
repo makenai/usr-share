@@ -1,0 +1,14 @@
+body {
+  font-family: adelle,serif;  
+}
+
+hr {
+  height: 10px;
+  background: url('stripes.png') #000;
+}
+
+a {
+  color: black;
+  font-weight: bold;
+  text-decoration: none;
+}

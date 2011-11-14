@@ -1,0 +1,31 @@
+#menu ul {
+  font-family: franklin-gothic-urw,sans-serif;
+  font-size: 1.3em;
+  text-transform: uppercase;
+  list-style: none;
+  padding: 0;
+  margin: 0 auto;
+  margin-left: 2px;
+  width: 100%;
+}
+
+#menu ul li {
+  display: block;
+  float: left;
+  width: 25%;
+  margin: 0;
+  padding: 0;
+}
+
+#menu ul li a {
+  background-color: black;
+  display: block;
+  color: white;
+  width: 100%;
+  padding: 0.6em;
+  text-decoration: none;
+  border-bottom: 1px solid white;
+  border-right: 1px solid white;  
+}
+
+#menu>ul li a { width: auto; }

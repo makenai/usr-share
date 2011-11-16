@@ -16,6 +16,7 @@ class MembersController < ApplicationController
 
   def create
     @member = Member.new(params[:member])
+    @member.user_id = current_user.id
     if @member.save
       redirect_to @member, :notice => "Successfully created member."
     else

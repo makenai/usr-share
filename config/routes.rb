@@ -12,6 +12,7 @@ Usrshare::Application.routes.draw do
 
   resources :posts
   devise_for :users
+  resources :users , :only => [ :index ]
   resources :checkins
   resources :members
   resources :events

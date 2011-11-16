@@ -1,0 +1,26 @@
+<table>
+<tr>
+  <th>Name</th>
+  <th>E-Mail</th>
+  <th>Sign Ins</th>
+  <th>Last Sign-In</th>  
+  <th>Created</th>
+  <th>Confirmed</th>
+  <th>Member?</th>  
+</tr>
+<% @users.each do |user| %>
+<tr>
+  <td><%= user.name %></td>
+  <td><%= user.email %></td>
+  <td><%= user.sign_in_count %></td>
+  <td><%= time_ago_in_words user.last_sign_in_at rescue 'never' %> ago</td>
+  <td><%= user.created_at %></td>
+  <td><%= user.confirmed_at %></td>
+  <td><%= user.member ? 'yes' : 'no' %></td>  
+</tr>
+<% end %>
+</table>
+
+<div class="clear">
+  <%= paginate @users %>
+</div>

@@ -4,7 +4,7 @@ class SimplifyRecommendations < ActiveRecord::Migration
     remove_column :recommendations, :isbn
     remove_column :recommendations, :asin
     add_column :recommendations, :media_id, :integer
-    add_column :recommendations, :user_id, :intger
+    add_column :recommendations, :user_id, :integer
   end
 
   def down

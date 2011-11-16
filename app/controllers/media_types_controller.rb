@@ -1,4 +1,7 @@
 class MediaTypesController < ApplicationController
+
+  before_filter :authenticate_admin!
+
   def index
     @media_types = MediaType.all
   end

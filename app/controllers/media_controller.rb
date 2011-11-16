@@ -4,14 +4,14 @@ require 'shapes'
 
 class MediaController < ApplicationController
   
-  before_filter :authenticate_admin!, :only => [ :new, :create, :edit, :update, :destroy, :import ]
+  before_filter :authenticate_admin!, :except => [ :index, :show, :search ]
 
   def index
     media_query = Media.order('title ASC').includes(:publisher,:authors)
     if params[:subcategory_id]
       media_query = media_query.where( 'subcategory_id = :subcategory_id', subcategory_id: params[:subcategory_id] )
     end
-    @media = media_query.page( params[:page] )
+    @media = media_query.page( params[:page] ).per( 24 )
   end
 
   def show

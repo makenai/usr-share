@@ -1,4 +1,7 @@
 class AuthorsController < ApplicationController
+  
+  before_filter :authenticate_admin!
+  
   def index
     @authors = Author.all
   end

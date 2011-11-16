@@ -1,6 +1,9 @@
 class RecommendationsController < ApplicationController
+  
+    before_filter :authenticate_admin!, :only => [ :edit, :update, :destroy ]
+  
   def index
-    @recommendations = Recommendation.all
+    @recommendations = Recommendation.page(params[:page])
   end
 
   def show

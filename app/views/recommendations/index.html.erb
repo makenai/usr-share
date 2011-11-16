@@ -1,21 +1,20 @@
 <% title "Recommendations" %>
 
-<table>
-  <tr>
-    <th>Title</th>
-    <th>Description</th>
-    <th>URL</th>
-  </tr>
-  <% for recommendation in @recommendations %>
-    <tr>
-      <td><%= recommendation.title %></td>
-      <td><%= recommendation.description %></td>
-      <td><%= recommendation.url %></td>
-      <% admin_content do %>
-      <td><%= link_to "Show", recommendation %></td>
-      <td><%= link_to "Edit", edit_recommendation_path(recommendation) %></td>
-      <td><%= link_to "Destroy", recommendation, :confirm => 'Are you sure?', :method => :delete %></td>
-      <% end %>
-    </tr>
-  <% end %>
-</table>
+<% @recommendations.each_with_index do |recommendation,i| %>
+<%= link_to recommendation.title, recommendation.url %>
+<p>Recommended by <%= recommendation.user.name %>, <%= time_ago_in_words( recommendation.created_at ) %> ago</p>
+<p>Says <%= recommendation.user.name %>: "<%= raw recommendation.description %>"</p>
+<%= raw recommendation.html %>
+<% admin_content do %>
+<p>
+  <%= link_to "Show", recommendation %>
+  <%= link_to "Edit", edit_recommendation_path(recommendation) %>
+  <%= link_to "Destroy", recommendation, :confirm => 'Are you sure?', :method => :delete %>
+</p>
+<% end %>
+<% if i < @recommendations.length - 1 %><hr /><% end %>
+<% end %>
+
+<div class="clear">
+  <%= paginate @recommendations %>
+</div>

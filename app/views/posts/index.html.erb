@@ -6,11 +6,13 @@
 
 <% @posts.each_with_index do |post,i| %>
   <h2><%= link_to raw( post.title ), post %></h2>
+  <p>Posted <%= time_ago_in_words( post.created_at ) %> ago by <%= post.user.name %></p>    
   <%= raw post.body %>
-  <p>Posted <%= time_ago_in_words( post.created_at ) %> ago</p>  
   <% admin_content do %>
+  <p>
     <%= link_to "Edit", edit_post_path(post) %> | 
     <%= link_to "Destroy", post, :confirm => 'Are you sure?', :method => :delete %>
+  </p>
   <% end %>
   <% if i < @posts.length - 1 %><hr /><% end %>
 <% end %>

@@ -1,4 +1,7 @@
 class MediaLocationsController < ApplicationController
+  
+  before_filter :authenticate_admin!
+  
   def index
     @media_locations = MediaLocation.all
   end

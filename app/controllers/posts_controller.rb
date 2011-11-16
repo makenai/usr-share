@@ -1,6 +1,6 @@
 class PostsController < ApplicationController
   
-  before_filter :authenticate_admin!, :only => [ :new, :create, :edit, :update, :destroy ]
+  before_filter :authenticate_admin!, :except => [ :index, :show ]
   
   def index
     @posts = Post.page( params[:page] )
@@ -16,6 +16,7 @@ class PostsController < ApplicationController
 
   def create
     @post = Post.new(params[:post])
+    @post.user_id = current_user.id
     if @post.save
       redirect_to @post, :notice => "Successfully created post."
     else

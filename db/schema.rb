@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20111116020523) do
+ActiveRecord::Schema.define(:version => 20111116104923) do
 
   create_table "authors", :force => true do |t|
     t.string   "name"
@@ -124,6 +124,7 @@ ActiveRecord::Schema.define(:version => 20111116020523) do
     t.text     "body"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "user_id"
   end
 
   create_table "publishers", :force => true do |t|
@@ -140,6 +141,7 @@ ActiveRecord::Schema.define(:version => 20111116020523) do
     t.datetime "updated_at"
     t.integer  "media_id"
     t.integer  "user_id"
+    t.text     "html"
   end
 
   create_table "rooms", :force => true do |t|

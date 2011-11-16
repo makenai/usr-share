@@ -8,5 +8,10 @@ Las Vegas on the second floor of the <a href="http://www.emergencyartslv.com/">E
   your card to be printed (usually takes a few days). Membership costs $25 per year.</p>
   
 <%= content_for :sidebar do %>
-Hello
+<h4>News</h4>
+<ul>
+<% Post.limit(5).each do |post| %>
+  <li><%= link_to post.title, post %></li>
+<% end %>
+</ul>
 <% end %>

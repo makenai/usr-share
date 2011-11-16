@@ -10,7 +10,7 @@
 <% for media in @media %>
 <div class="media">
   <%= link_to image_tag( media.image_url, :height => 275 ), media %>
-  <div class="title"><%= link_to media.title, media %></div>
+  <div class="title"><%= link_to raw( media.title ), media %></div>
   <div class="author"><%= media.authors.collect { |a| a.name }.join(', ') %></div>
 </div>
 <% end %>

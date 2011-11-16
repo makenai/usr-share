@@ -18,6 +18,7 @@ gem 'kaminari'
 gem 'ri_cal'
 gem "prawn-labels", :git => 'git://github.com/makenai/prawn-labels.git'
 gem "carmen"
+gem "embedly"
 
 group :development do
   gem "nifty-generators"

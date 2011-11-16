@@ -1,6 +1,7 @@
 class MembersController < ApplicationController
   
   before_filter :authenticate_user!
+  before_filter :authenticate_admin!, :only => [ :edit, :update, :destroy, :index ]
   
   def index
     @members = Member.all

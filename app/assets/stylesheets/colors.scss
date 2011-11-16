@@ -1,3 +1,14 @@
+@mixin colorPage($color) {
+  h1, h2, h3, h4, label {
+    color: $color;
+  }
+  hr, #sidebar, blockquote { background-color: $color }
+}
+
 body.orange {
-  hr { background-color: #f06538 }
+  @include colorPage(#f06538);
+}
+
+body.red {
+  @include colorPage(#ff0000);
 }

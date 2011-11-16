@@ -14,20 +14,23 @@
     <%= csrf_meta_tag %>
     <%= yield(:head) %>
   </head>
-  <body class="orange">
-    
+  <body class="orange">  
   <div class="container">
     <div id="header" class="span-24">
       <h1>/usr/lib</h1>
       <div id="signup">
         <% if user_signed_in? %>
-          Hi, <%= current_user.name %>!. Want to
+          Hi, <%= link_to current_user.name, edit_user_registration_path( current_user ) %>!. Want to
           <%= link_to "SIGN OUT", destroy_user_session_path, :method => :delete %>?
         <% else %>
           <%= link_to "SIGN UP", new_user_registration_path %> or <%= link_to "SIGN IN", new_user_session_path %>
-        <% end %>        
+        <% end %>
+        <% admin_content do %>
+        <br />
+        You are an <%= link_to 'ADMIN', admin_path %>!
+        <% end %>
       </div>
-    </div>
+    </div>   
     <div id="menu" class="span-24">
       <ul>
         <li><%= link_to "Home", root_path %></li>
@@ -36,20 +39,30 @@
         <li><%= link_to "Catalog", media_index_path %></li>
         <li><%= link_to "Location", locations_path %></li>
         <li><%= link_to "Events", events_path %></li>
-        <li><%= link_to "Reserve a Room", rooms_path %></li>
+        <li><%= link_to "Reserve a Room", new_event_path %></li>
         <li><%= link_to "Recommend a Book", new_recommendation_path %></li>                        
       </ul>
-      <hr />
     </div>
+    <hr />
+    <% flash.each do |name, msg| %>
+      <div class="flash <%= name %>"><%= msg %><a class="close" href="#close">close</a></div>
+    <% end %>      
     <% if content_for?(:sidebar) %>
-      <div class="span-16"><%= yield %></div>
-      <div class="span-8 last"><%= yield :sidebar %></div>
+      <div id="content" class="span-16">
+        <%= content_tag :h1, yield(:title) if show_title? %>
+        <%= yield %>
+      </div>
+      <div id="sidebar" class="span-8 last"><div id="sidebar-container"><%= yield :sidebar %></div></div>
     <% else %>
-      <div class="span-24"><%= yield %></div>    
+      <div id="content" class="span-24">
+        <%= content_tag :h1, yield(:title) if show_title? %>
+        <%= yield %>
+      </div>    
     <% end %>
+    <hr />
     <div id="footer" class="span-24">
-      Powered by <%= link_to '/usr/share', share_page_path %>.
-      Copyright <%= Time.now.year %>, usrlib.org
+      Copyright <%= Time.now.year %>, usrlib.org.
+      Powered by <%= link_to '/usr/share', share_page_path %>.      
     </div>    
   </div>
 

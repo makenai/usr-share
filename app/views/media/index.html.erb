@@ -1,18 +1,23 @@
 <% title "Media" %>
 
-<table>
-  <% for media in @media %>
-    <tr>
-      <td><%= link_to image_tag( media.image_url, :height => 120 ), media %></td>
-      <td><%= link_to media.title, media %></td>
-      <td>Some Category</td>
-      <td><%= media.publisher.try(:name) %></td>
-      <td><%= media.authors.collect { |a| a.name }.join(', ') %></td>
-    </tr>
-  <% end %>
-</table>
+<p>
+<%= form_tag search_media_index_path, :method => 'get', :id => 'mediasearch' do %>
+    <%= text_field_tag :term, params[:term] %>
+    <%= submit_tag "Search", :name => nil %>
+<% end %>
+</p>
 
-<%= paginate @media %>
+<% for media in @media %>
+<div class="media">
+  <%= link_to image_tag( media.image_url, :height => 275 ), media %>
+  <div class="title"><%= link_to media.title, media %></div>
+  <div class="author"><%= media.authors.collect { |a| a.name }.join(', ') %></div>
+</div>
+<% end %>
+
+<div class="clear">
+  <%= paginate @media %>
+</div>
 
 <% admin_content do %>
 <p><%= link_to "New Media", new_media_path %></p>

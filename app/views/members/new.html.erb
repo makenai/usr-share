@@ -1,5 +1,33 @@
-<% title "New Member" %>
+<% title "Membership" %>
+<% if current_user.member %>
 
-<%= render 'form' %>
+<p>Hi, thanks for applying to become a member!</p>
 
-<p><%= link_to "Back to List", members_path %></p>
+<% if current_user.member.card_number %>
+  <p>It looks like your access card is ready to pick up, downstairs at <a href="http://www.thebeatlv.com/">The Beat</a>.</p>
+<% else %>
+  <p>It looks like we're still processing your application. If you haven't heard from us in a couple of days,
+    please shoot us an email at <%= link_to 'help@usrlib.org', 'mailto:help@usrlib.org'%>.</p>
+<% end %>
+
+
+<% else %>
+<%= image_tag 'card.png', :class => 'right' %>
+
+<p>Hey, glad you've decided to become a member! Please fill out the below information completely and honestly. 
+   It will normally take us a few days to get the cards printed after which we'll send you an email telling you
+   when it's ready. You'll pick your card up from <a href="http://www.thebeatlv.com/">The Beat</a> downstairs 
+   from us. You can pay for your card when you pick it up using cash or credit.</p>
+
+<h3>Membership Benefits:</h3>
+
+<ul>
+  <li>Get in to /usr/lib whenever you like!</li>
+  <li>Reserve the meeting room for your events!</li>
+  <li>Chicks and dudes dig it!</li>
+</ul>
+
+<div class="clear">
+  <%= render 'form' %>
+</div>
+<% end %>

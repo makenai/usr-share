@@ -1,23 +1,29 @@
-<% title "Locations" %>
+<% title "Location" %>
 
 <% for location in @locations %>
 <div class="location">
-<a href="http://maps.google.com/?q=<%= location.to_url_param %>"><img src="https://maps.google.com/maps/api/staticmap?center=<%= location.to_url_param %>&zoom=14&size=300x200&maptype=roadmap&markers=color:0xFF4400|<%= location.to_url_param %>&key=<%= APP_CONFIG[:maps_key] %>&sensor=false&style=feature:water|element:all|saturation:30|lightness:49|hue:0xa1cdfc&style=feature:administrative.land_parcel|element:all|visibility:off&style=feature:landscape.man_made|element:all|visibility:off&style=feature:transit|element:all|visibility:off&style=feature:road.local|element:geometry|visibility:simplified&style=feature:road|element:labels|visibility:off|lightness:20&style=feature:road.highway|element:labels|visibility:on&style=feature:road.highway|element:geometry|hue:0xf49935&style=feature:road.arterial|element:labels|visibility:on&style=feature:road.arterial|element:geometry|hue:0xfad959&style=feature:road.local|element:labels|visibility:simplified&style=feature:poi|element:labels|visibility:off" /></a>
+<a href="http://maps.google.com/?q=<%= location.to_url_param %>" width="300" height="200" class="left"><img src="https://maps.google.com/maps/api/staticmap?center=<%= location.to_url_param %>&zoom=14&size=300x200&maptype=roadmap&markers=color:0xFF4400|<%= location.to_url_param %>&key=<%= APP_CONFIG[:maps_key] %>&sensor=false&style=feature:water|element:all|saturation:30|lightness:49|hue:0xa1cdfc&style=feature:administrative.land_parcel|element:all|visibility:off&style=feature:landscape.man_made|element:all|visibility:off&style=feature:transit|element:all|visibility:off&style=feature:road.local|element:geometry|visibility:simplified&style=feature:road|element:labels|visibility:off|lightness:20&style=feature:road.highway|element:labels|visibility:on&style=feature:road.highway|element:geometry|hue:0xf49935&style=feature:road.arterial|element:labels|visibility:on&style=feature:road.arterial|element:geometry|hue:0xfad959&style=feature:road.local|element:labels|visibility:simplified&style=feature:poi|element:labels|visibility:off" /></a>
 <div class="adr">
- <div class="street-address"><%= location.address_1 %></div>
- <div class="extended-address"><%= location.address_2 %></div>
- <span class="locality"><%= location.city %></span>,
- <span class="region"><%= location.state %></span>
- <span class="postal-code"><%= location.postal %></span>
- <div class="country-name"><%= location.country %></div>
- <div class="phone"><%= location.phone %></div> 
- <pre class="hours"><%= location.hours %></pre>
+  <div class="name"><%= location.name %></div>
+  <div class="street-address"><%= location.address_1 %></div>
+  <div class="extended-address"><%= location.address_2 %></div>
+  <span class="locality"><%= location.city %></span>,
+  <span class="region"><%= location.state %></span>
+  <span class="postal-code"><%= location.postal %></span>
+  <div class="country-name"><%= location.country %></div>
+  <div class="phone"><%= location.phone %></div> 
+  <pre class="hours"><%= location.hours %></pre>
 </div>
+<br class="clear" />
+<% admin_content do %>
 <p><%= link_to "Edit", edit_location_path(location) %>
 | <%= link_to "Destroy", location, :confirm => 'Are you sure?', :method => :delete %></p>
+<% end %>
 </div>
 <% end %>
 
+<% admin_content do %>
 <p><%= link_to "New Location", new_location_path %></p>
+<% end %>
 
 

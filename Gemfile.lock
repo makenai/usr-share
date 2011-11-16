@@ -55,6 +55,7 @@ GEM
     arel (2.2.1)
     bcrypt-ruby (3.0.1)
     builder (3.0.0)
+    carmen (0.2.8)
     coffee-rails (3.1.1)
       coffee-script (>= 2.2.0)
       railties (~> 3.1.0)
@@ -196,6 +197,7 @@ PLATFORMS
 
 DEPENDENCIES
   amazon-ecs
+  carmen
   coffee-rails (~> 3.1.0)
   devise
   growl_notify

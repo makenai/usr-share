@@ -2,26 +2,20 @@
 
 <table>
   <tr>
-    <th>Type</th>
     <th>Title</th>
-    <th>Isbn</th>
-    <th>Asin</th>
     <th>Description</th>
-    <th>Url</th>
+    <th>URL</th>
   </tr>
   <% for recommendation in @recommendations %>
     <tr>
-      <td><%= recommendation.type_id %></td>
       <td><%= recommendation.title %></td>
-      <td><%= recommendation.isbn %></td>
-      <td><%= recommendation.asin %></td>
       <td><%= recommendation.description %></td>
       <td><%= recommendation.url %></td>
+      <% admin_content do %>
       <td><%= link_to "Show", recommendation %></td>
       <td><%= link_to "Edit", edit_recommendation_path(recommendation) %></td>
       <td><%= link_to "Destroy", recommendation, :confirm => 'Are you sure?', :method => :delete %></td>
+      <% end %>
     </tr>
   <% end %>
 </table>
-
-<p><%= link_to "New Recommendation", new_recommendation_path %></p>

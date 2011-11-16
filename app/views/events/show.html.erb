@@ -1,40 +1,23 @@
-<% title "Event" %>
+<% title @event.name %>
 
-<p>
-  <strong>Name:</strong>
-  <%= @event.name %>
-</p>
-<p>
-  <strong>Description:</strong>
+  <h3>Description</h3>
   <%= @event.description %>
-</p>
-<p>
-  <strong>Url:</strong>
-  <%= @event.url %>
-</p>
-<p>
-  <strong>Member:</strong>
-  <%= @event.member_id %>
-</p>
-<p>
-  <strong>Room:</strong>
-  <%= room_name_and_location @event %>
-</p>
-<p>
-  <strong>Start Time:</strong>
-  <%= @event.start_time %>
-</p>
-<p>
-  <strong>Duration:</strong>
-  <%= @event.duration %>
-</p>
-<p>
-  <strong>Is Promoted:</strong>
-  <%= @event.is_promoted %>
-</p>
+<% if @event.url %>
+  <h3>URL</h3>
+  <%= link_to @event.url, @event.url %>
+<% end %>
+<h3>Owner:</h3>
+<%= @event.member.user.name %>
+<h3>Start Time:</h3>
+<%= @event.start_time.strftime("%a, %B %d %I:%M %p") %>
+<h3>End Time:</h3>
+<%= @event.end_time.strftime("%a, %B %d %I:%M %p") %>
 
+<% admin_content do %>
 <p>
   <%= link_to "Edit", edit_event_path(@event) %> |
   <%= link_to "Destroy", @event, :confirm => 'Are you sure?', :method => :delete %> |
   <%= link_to "View All", events_path %>
 </p>
+<% end %>
+<br />

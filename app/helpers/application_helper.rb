@@ -12,4 +12,8 @@ module ApplicationHelper
     yield unless current_user.try(:member?)
   end
   
+  def active_link_to( )
+    
+  end
+  
 end

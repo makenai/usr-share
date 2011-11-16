@@ -1,0 +1,14 @@
+.media {
+  width: 200px;
+  height: 360px;
+  display: block;
+  float: left;
+  margin-left: 30px;
+  margin-bottom: 30px;
+  text-align: center;
+  overflow: hidden;
+}
+
+#mediasearch {
+  text-align: right;
+}

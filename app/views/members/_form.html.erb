@@ -21,16 +21,33 @@
     <%= f.text_field :state %>
   </p>
   <p>
-    <%= f.label :postal %><br />
+    <%= f.label :postal, "ZIP / Postal Code" %><br />
     <%= f.text_field :postal %>
   </p>
   <p>
     <%= f.label :country %><br />
-    <%= f.text_field :country %>
+    <%= f.country_select(:country, "US") %>
   </p>
   <p>
     <%= f.label :phone %><br />
-    <%= f.text_field :phone %>
+    <%= f.telephone_field :phone %>
+  </p>
+  <% admin_content do %>
+  <p>
+    <%= f.label :card_number, 'Access Card Number' %><br />
+    <%= f.text_field :card_number %>
+  </p>
+  <p>
+    <%= f.label :valid_until %><br />
+    <%= f.datetime_select :valid_until, :default => 1.year.from_now %>
+  </p>
+  <% end %>
+  <p>
+    <%= f.label :confirmation %>
+    <p>By checking this box, I affirm that I really want to become a member of /usr/lib, 
+      intend to pay for and pick up my card in a timely manner, and would never flake out 
+      on something like this. I really, really, really mean that.</p>
+    <%= f.check_box :confirmation %>
   </p>
   <p><%= f.submit %></p>
 <% end %>

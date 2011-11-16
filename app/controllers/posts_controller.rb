@@ -3,7 +3,7 @@ class PostsController < ApplicationController
   before_filter :authenticate_admin!, :only => [ :new, :create, :edit, :update, :destroy ]
   
   def index
-    @posts = Post.all
+    @posts = Post.page( params[:page] )
   end
 
   def show

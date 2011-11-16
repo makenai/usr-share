@@ -1,21 +1,16 @@
-<% title "Posts" %>
-
-<table>
-  <tr>
-    <th>Title</th>
-    <th>Body</th>
-  </tr>
-  <% for post in @posts %>
-    <tr>
-      <td><%= post.title %></td>
-      <td><%= post.body %></td>
-      <td><%= link_to "Show", post %></td>
-      <td><%= link_to "Edit", edit_post_path(post) %></td>
-      <td><%= link_to "Destroy", post, :confirm => 'Are you sure?', :method => :delete %></td>
-    </tr>
-  <% end %>
-</table>
+<% title "News" %>
 
 <% admin_content do %>
   <p><%= link_to "New Post", new_post_path %></p>
+<% end %>
+
+<% @posts.each_with_index do |post,i| %>
+  <h2><%= link_to raw( post.title ), post %></h2>
+  <%= raw post.body %>
+  <p>Posted <%= time_ago_in_words( post.created_at ) %> ago</p>  
+  <% admin_content do %>
+    <%= link_to "Edit", edit_post_path(post) %> | 
+    <%= link_to "Destroy", post, :confirm => 'Are you sure?', :method => :delete %>
+  <% end %>
+  <% if i < @posts.length - 1 %><hr /><% end %>
 <% end %>

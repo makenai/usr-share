@@ -13,8 +13,9 @@ class RecommendationsController < ApplicationController
 
   def create
     @recommendation = Recommendation.new(params[:recommendation])
+    @recommendation.user_id = current_user.id
     if @recommendation.save
-      redirect_to @recommendation, :notice => "Successfully created recommendation."
+      redirect_to recommendations_url, :notice => "Successfully created recommendation."
     else
       render :action => 'new'
     end
@@ -27,7 +28,7 @@ class RecommendationsController < ApplicationController
   def update
     @recommendation = Recommendation.find(params[:id])
     if @recommendation.update_attributes(params[:recommendation])
-      redirect_to @recommendation, :notice  => "Successfully updated recommendation."
+      redirect_to recommendations_url, :notice  => "Successfully updated recommendation."
     else
       render :action => 'edit'
     end

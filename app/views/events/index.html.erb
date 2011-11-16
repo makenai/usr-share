@@ -1,5 +1,3 @@
-<% title "Events" %>
-
 <div id="calendar">
   <h2 id="month">
     <%= link_to "<", :month => (@date.beginning_of_month-1).strftime("%Y-%m") %>
@@ -15,34 +13,30 @@
       <% end %>
     <% end %>
   <% end %>
-</div>
+</div> 
 
+<% if @events.length > 0 %>
 <table>
   <tr>
-    <th>Name</th>
-    <th>Description</th>
-    <th>Url</th>
-    <th>Member</th>
-    <th>Room</th>
-    <th>Start Time</th>
-    <th>Duration</th>
-    <th>Is Promoted</th>
+    <th>Event</th>
+    <th>URL</th>
+    <th>Owner</th>
+    <th>Date</th>
+    <th>Time</th>
   </tr>
   <% for event in @events %>
     <tr>
-      <td><%= event.name %></td>
-      <td><%= event.description %></td>
-      <td><%= event.url %></td>
-      <td><%= event.member_id %></td>
-      <td><%= room_name_and_location event %></td>
-      <td><%= event.start_time %></td>
-      <td><%= event.duration %></td>
-      <td><%= event.is_promoted %></td>
+      <td><%= link_to event.name, event %></td>
+      <td><%= event.url ? link_to( event.url, event.url ) : None %></td>
+      <td><%= event.member.user.name %></td>
+      <td><%= event.start_time.strftime("%a, %B %d") %></td>
+      <td><%= event.start_time.strftime("%I:%M %p") %> - <%= event.end_time.strftime("%I:%M %p") %></td>
+<% admin_content do %>
       <td><%= link_to "Show", event %></td>
       <td><%= link_to "Edit", edit_event_path(event) %></td>
       <td><%= link_to "Destroy", event, :confirm => 'Are you sure?', :method => :delete %></td>
+<% end %>
     </tr>
   <% end %>
 </table>
-
-<p><%= link_to "New Event", new_event_path %></p>
+<% end %>

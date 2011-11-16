@@ -10,7 +10,7 @@ class ApplicationController < ActionController::Base
   
   def authenticate_admin!
     return if current_user.try(:admin?)
-    redirect_to :back, :notice => 'You must be an admin to access that page.'
+    redirect_to root_path, :notice => 'You must be an admin to access that page.'
   end
   
 end

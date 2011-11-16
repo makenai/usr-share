@@ -1,0 +1,62 @@
+body {
+  font-family: adelle,serif;
+  font-size: 14px;
+}
+
+h1, h2, h3, h4, label {
+  font-family: franklin-gothic-urw,sans-serif;
+  font-weight: bold;
+}
+
+h1 { font-size: 50px; }
+h2 { font-size: 40px; }
+h3 { font-size: 30px; }
+h4, label { font-size: 20px; }
+
+label {
+  margin: 0;
+  padding: 0;
+}
+
+hr {
+  margin: 3px 0;
+  padding: 0;
+  height: 12px;
+  background: url('stripes.png') #000;
+}
+
+a {
+  color: black;
+  font-weight: bold;
+  text-decoration: none;
+}
+
+blockquote {
+  padding: 10px;
+  background-color: black;
+  color: #FFF;
+  font-family: franklin-gothic-urw,sans-serif;  
+  font-size: 35px;
+  font-style: normal;
+  margin: 10px 0;
+}
+
+#sidebar {
+  color: #FFF;
+  background-color: #000;
+  min-height: 200px;
+}
+
+#sidebar-container {
+  padding: 10px;
+}
+
+.flash {
+  position: relative;
+  a.close {
+    font-size: 10px;
+    position: absolute;
+    top: 4px;
+    right: 4px;
+  }
+}

@@ -1,28 +1,16 @@
 <%= form_for @recommendation do |f| %>
   <%= f.error_messages %>
   <p>
-    <%= f.label :type_id %><br />
-    <%= f.text_field :type_id %>
-  </p>
-  <p>
     <%= f.label :title %><br />
     <%= f.text_field :title %>
   </p>
   <p>
-    <%= f.label :isbn %><br />
-    <%= f.text_field :isbn %>
-  </p>
-  <p>
-    <%= f.label :asin %><br />
-    <%= f.text_field :asin %>
-  </p>
-  <p>
-    <%= f.label :description %><br />
-    <%= f.text_area :description %>
-  </p>
-  <p>
-    <%= f.label :url %><br />
+    <%= f.label :url, "Where can we find it? (Amazon is preferred)" %><br />
     <%= f.text_field :url %>
+  </p>
+  <p>
+    <%= f.label :description, "Why do you think we should we get it?" %><br />
+    <%= f.text_area :description %>
   </p>
   <p><%= f.submit %></p>
 <% end %>

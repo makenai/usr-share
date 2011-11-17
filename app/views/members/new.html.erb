@@ -3,7 +3,7 @@
 
 <p>Hi, thanks for applying to become a member!</p>
 
-<% if current_user.member.card_number.empty? %>
+<% if current_user.member.card_number.blank? %>
   <p>It looks like we're still processing your application. If you haven't heard from us in a couple of days,
     please shoot us an email at <%= link_to 'help@usrlib.org', 'mailto:help@usrlib.org'%>.</p>
 <% else %>

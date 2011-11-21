@@ -5,6 +5,10 @@
     <%= f.text_field :name %>
   </p>
   <p>
+    <%= f.label :company %><br />
+    <%= f.text_field :company %>
+  </p>
+  <p>
     <%= f.label :address_1 %><br />
     <%= f.text_field :address_1 %>
   </p>
@@ -32,22 +36,30 @@
     <%= f.label :phone %><br />
     <%= f.telephone_field :phone %>
   </p>
+  <p>
+    <%= f.label :notes %><br />
+    <%= f.text_area :notes %>
+  </p>  
   <% admin_content do %>
   <p>
     <%= f.label :card_number, 'Access Card Number' %><br />
     <%= f.text_field :card_number %>
   </p>
   <p>
+    <%= f.label :send_pickup_email, 'Send Card Pickup Instruction' %><br />
+    <%= f.check_box :send_pickup_email %>
+  </p>
+  <p>
     <%= f.label :valid_until %><br />
     <%= f.datetime_select :valid_until, :default => 1.year.from_now %>
   </p>
-  <% end %>
+  <% end %>  
   <p>
     <%= f.label :confirmation %>
     <p>By checking this box, I affirm that I really want to become a member of /usr/lib, 
       intend to pay for and pick up my card in a timely manner, and would never flake out 
       on something like this. I really, really, really mean that.</p>
-    <%= f.check_box :confirmation %>
+    <%= f.check_box :confirmation, :checked => !@member.new_record? %>
   </p>
   <p><%= f.submit %></p>
 <% end %>

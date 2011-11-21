@@ -2,11 +2,19 @@
 
 <p>
   <strong>User:</strong>
-  <%= @member.user_id %>
+  <%= @member.user.name %>
+</p>
+<p>
+  <strong>Email:</strong>
+  <%= @member.user.email %>
 </p>
 <p>
   <strong>Name:</strong>
   <%= @member.name %>
+</p>
+<p>
+  <strong>Company:</strong>
+  <%= @member.company %>
 </p>
 <p>
   <strong>Address 1:</strong>
@@ -35,6 +43,10 @@
 <p>
   <strong>Phone:</strong>
   <%= @member.phone %>
+</p>
+<p>
+  <strong>Notes:</strong>
+  <%= @member.notes %>
 </p>
 
 <p>

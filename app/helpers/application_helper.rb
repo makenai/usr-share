@@ -4,6 +4,10 @@ module ApplicationHelper
     yield if current_user.try(:admin?)
   end
   
+  def nonadmin_content
+    yield unless current_user.try(:admin?)
+  end
+  
   def member_content
     yield if current_user.try(:member?)    
   end
@@ -13,7 +17,6 @@ module ApplicationHelper
   end
   
   def active_link_to( )
-    
   end
   
 end

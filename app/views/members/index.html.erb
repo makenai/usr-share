@@ -3,6 +3,7 @@
 <table>
   <tr>
     <th>User</th>
+    <th>Email</th>
     <th>Name</th>
     <th>Address 1</th>
     <th>Address 2</th>
@@ -11,10 +12,12 @@
     <th>Postal</th>
     <th>Country</th>
     <th>Phone</th>
+    <th>Card #</th>
   </tr>
   <% for member in @members %>
     <tr>
       <td><%= member.user_id %></td>
+      <td><%= member.user.email %></td>
       <td><%= member.name %></td>
       <td><%= member.address_1 %></td>
       <td><%= member.address_2 %></td>
@@ -23,6 +26,7 @@
       <td><%= member.postal %></td>
       <td><%= member.country %></td>
       <td><%= member.phone %></td>
+      <td><%= member.card_number %></td>      
       <td><%= link_to "Show", member %></td>
       <td><%= link_to "Edit", edit_member_path(member) %></td>
       <td><%= link_to "Destroy", member, :confirm => 'Are you sure?', :method => :delete %></td>

@@ -5,6 +5,7 @@
     <%= text_field_tag :upc, params[:upc] %>
     </label>
     <%= submit_tag "Import", :name => nil %>
+<% end %>
     
     <ul>
       <li><%= link_to 'Categorize Media', categorize_media_index_path %></li>
@@ -14,6 +15,27 @@
       <li><%= link_to 'Authors', authors_path %></li>
       <li><%= link_to 'Publishers', publishers_path %></li>
       <li><%= link_to 'Media Locations', media_locations_path %></li>
-    </ul>
+    </ul>        
+
+<h3>Labels</h3>
+
+<%= form_tag labels_media_index_path, :method => 'get' do %>
+  <label>Category:
+    <%= text_field_tag :category %>
+  </label><br />
+  <label>Color:
+    <%= text_field_tag :color %>
+  </label><br />
+  <label>Skip:
+    <%= text_field_tag :skip, 0 %>
+  </label><br />
+  <label>Since (YYYY-MM-DD):
+    <%= text_field_tag :since, '2011-01-01' %>
+  </label><br />
+  <label>Id List:<br />
+    <%= text_area_tag :ids, '' %>
+  </label><br />
+  <%= submit_tag 'Print Labels' %>
 <% end %>
+
 </p>

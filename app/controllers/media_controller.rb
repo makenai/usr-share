@@ -121,12 +121,35 @@ class MediaController < ApplicationController
   end
 
   def labels
-    @media = Media.where('subcategory_id IS NOT NULL').includes( :subcategory ).sort { |a,b| a.label.to_s <=> b.label.to_s }
+    since = Date.parse( params[:since] )
+    media = Media.where('subcategory_id IS NOT NULL AND created_at > :since', :since => since )      
+
+    unless params[:ids].blank?
+      list = params[:ids].split("\n").collect { |id| id.chomp }
+      media = media.where('id IN (:list) OR asin IN (:list) OR isbn IN (:list)', :list => list )
+    end
+    
+    media = media.includes( :subcategory )
+    .sort { |a,b| a.label.to_s <=> b.label.to_s }
+    
+    @media = media.select do |media|
+        show = true
+        unless params[:category].blank?
+          show = false unless media.subcategory.category.code.downcase == params[:category].downcase
+        end
+        unless params[:color].blank?
+          show = false unless media.subcategory.category.color.downcase == params[:color].downcase
+        end
+        show
+      end
+      # Skip Label Support
+      if params[:skip]
+        params[:skip].to_i.times do
+          @media.unshift(nil)
+        end
+      end
     doc = Prawn::Labels.generate( @media, :type => "3M3100P" ) do |pdf, media, info|
-      # Black Background
-      # pdf.fill_color( '000000' )
-      # pdf.fill_rectangle [ 0, 0 ], info[:width], 0 - info[:height]
-      
+      next unless media
       # Color Strip
       pdf.fill_color( media.subcategory.category.color || 'ff00ff' )
       pdf.fill_rectangle [ 0, info[:height] - 6], info[:width], 3

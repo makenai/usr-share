@@ -12,9 +12,9 @@ class Category < ActiveRecord::Base
     00afea
     f60087
     fff152
-    fa6232
+    ef9d25
     85c657
-  }
+  } # Old orange was fa6232
   
   LABEL_SHAPES = %w{
     square

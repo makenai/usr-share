@@ -3,6 +3,11 @@
 <tr>
   <td><%= media.title.truncate(75) %></td>
   <td><%= media.label.join(' ') %></td>
+  <td>
+    <% if media.subcategory %>
+    <span style="font-weight: bold; color: #<%= media.subcategory.category.color %>"><%= media.subcategory.category.shape %></span>
+    <% end %>
+  </td>
 </tr>
 <% end %>
 </table>

@@ -86,7 +86,7 @@ class Media < ActiveRecord::Base
   def category_id
     subcategory.try(:category_id)
   end
-  
+    
   def label
     return [ '', '', '' ] unless subcategory
     [ subcategory.category.code, subcategory.code, authors.empty? ? '' : authors.first.short ]

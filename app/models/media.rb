@@ -12,6 +12,14 @@ class Media < ActiveRecord::Base
   validates_uniqueness_of :isbn, :scope => :copy_number
   validates_presence_of :title
   
+  #for solr search
+  searchable do
+    text :title, :boost => 2
+    
+    text :description
+    string :subcategory #for faceted search
+  end    
+  
   def self.from_amazon_item( item )
     media = self.new(
       :title       => item.get_unescaped('ItemAttributes/Title'),
@@ -91,5 +99,6 @@ class Media < ActiveRecord::Base
     return [ '', '', '' ] unless subcategory
     [ subcategory.category.code, subcategory.code, authors.empty? ? '' : authors.first.short ]
   end
+
 
 end

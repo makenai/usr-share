@@ -1,5 +1,7 @@
 .bundle
 db/*.sqlite3
 log/*.log
+log/*
 config/app_config.yml
 tmp/
+solr/

@@ -1,4 +1,6 @@
 Usrshare::Application.routes.draw do
+  get "searches/index"
+
   resources :subcategories, :except => [ :show ]
 
   resources :categories, :except => [ :show ] do
@@ -23,6 +25,7 @@ Usrshare::Application.routes.draw do
   resources :publishers
   resources :authors
   resources :media_types
+  resources :searches
   resources :media do
     collection do
       get 'search'

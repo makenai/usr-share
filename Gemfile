@@ -19,6 +19,7 @@ gem 'ri_cal'
 gem "prawn-labels", :git => 'git://github.com/makenai/prawn-labels.git'
 gem "carmen"
 gem "embedly"
+gem "sunspot_rails"
 
 group :development do
   gem "nifty-generators"

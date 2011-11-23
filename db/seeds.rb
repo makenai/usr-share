@@ -10,7 +10,7 @@ User.destroy_all
 User.create!(
   :name     => "Pawel",
   :email    => "pawel@zappos.com",
-  :password => 'changeme',r
+  :password => 'changeme',
   :admin    => true
 )
 

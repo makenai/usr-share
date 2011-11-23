@@ -26,14 +26,14 @@ usrlib = Location.create!(
   :hours     => "Mon-Fri 7 am - 12 am\nSat 9 am - 12 am\nSun 9 am - 5 pm"
 )
 
-Room.destory_all
+Room.destroy_all
 Room.create(
   :name        => 'Meeting Room',
   :location_id => usrlib.id,
   :capacity    => 30
 )
 
-MediaType.destoy_all
+MediaType.destroy_all
 MediaType.create( :name => 'Book' )
 
 Media.destroy_all
@@ -55,14 +55,14 @@ Media.create(
   :title => 'How To Win Friends and Influence People',
   :description => "One of the best known motivational books in history: Since
   it was released in 1936, How to Win Friends and Influence People has sold
-  more than 15 million copies. Carnegie’s first book is timeless and appeals
+  more than 15 million copies. Carnegies first book is timeless and appeals
   equally to business audiences, self-help audiences, and general readers
   alike. Proven advice for success in life: Carnegie believed that most
   successes come from an ability to communicate effectively rather than from
   brilliant insights. His book teaches these skills by showing readers how to
   value others and make them feel appreciated rather than manipulated. As
   relevant as ever before: In the age of Steven Covey and Tony Robbins, Dale
-  Carnegie’s principles endure. The original edition was published in response
+  Carnegies principles endure. The original edition was published in response
   to the Great Depression, and this fresh hardcover edition will appeal now
   more than ever to readers wanting tried and true advice on how to deal with
   a depressed economy. Readers can learn how to get the job they want, improve
@@ -89,7 +89,7 @@ Media.create(
 
 
 
-MediaLocation.destoy_all
+MediaLocation.destroy_all
 MediaLocation.create( :name => 'On Order',   :available => false )
 MediaLocation.create( :name => 'Processing', :available => false )
 MediaLocation.create( :name => 'Shelved',    :available => true )

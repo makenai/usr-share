@@ -32,7 +32,7 @@ Usrshare::Application.routes.draw do
       post 'import'
       get 'inventory'
       get 'labels'
-      post 'quick_labels'      
+      get 'quick_labels'      
     end
   end
   match '/admin' => 'pages#admin'

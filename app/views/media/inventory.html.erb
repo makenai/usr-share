@@ -1,5 +1,5 @@
 <table id="inventory">
-<% @media.each do |media| %>
+<% @media.sort { |a,b| a.label.join(' ') <=> b.label.join(' ') }.each do |media| %>
 <tr>
   <td><%= media.title.truncate(75) %></td>
   <td><%= media.label.join(' ') %></td>

@@ -131,6 +131,7 @@ class MediaController < ApplicationController
     end
     doc = Prawn::Labels.generate( labels, :type => "3M3100P" ) do |pdf, label, info|
 
+      next unless label
       parts = label.split(' ')
       category = Category.find_by_code( parts.first )
       next unless category

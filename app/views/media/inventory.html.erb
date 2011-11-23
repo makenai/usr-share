@@ -1,5 +1,5 @@
 <table id="inventory">
-<% Media.all( include: [ :subcategory ]).each do |media| %>
+<% @media.each do |media| %>
 <tr>
   <td><%= media.title.truncate(75) %></td>
   <td><%= media.label.join(' ') %></td>

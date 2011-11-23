@@ -106,12 +106,14 @@ class MediaController < ApplicationController
   end
   
   def inventory
+    since = params[:since].blank? ? '2011-11-01' : params[:since]
+    @media = Media.where('created_at > :since', :since => since )
     respond_to do |format|
       format.html
       format.csv do
         csv = CSV.generate do |csv|
           csv << [ 'cat', 'subcat', 'auth', 'title', 'author' ]
-          Media.all.each do |media|
+          @media.each do |media|
             csv << [ *media.label, media.title, media.authors.try(:first) ]
           end
         end

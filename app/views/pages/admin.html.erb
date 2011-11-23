@@ -38,4 +38,11 @@
   <%= submit_tag 'Print Labels' %>
 <% end %>
 
+<%= form_tag quick_labels_media_index_path, :method => 'post' do %>
+  <%= text_area_tag :labels, '' %><br />
+  <%= submit_tag 'Print Quick Labels' %>
+<% end %>
+
+
+
 </p>

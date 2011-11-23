@@ -122,6 +122,48 @@ class MediaController < ApplicationController
     end
   end
 
+  def quick_labels
+    labels = params[:labels].split("\n")
+    if params[:skip]
+      params[:skip].to_i.times do
+        labels.unshift( nil )
+      end
+    end
+    doc = Prawn::Labels.generate( labels, :type => "3M3100P" ) do |pdf, label, info|
+
+      parts = label.split(' ')
+      category = Category.find_by_code( parts.first )
+      next unless category
+
+      # Color Strip
+      pdf.fill_color( category.color || 'ff00ff' )
+      pdf.fill_rectangle [ 0, info[:height] - 6], info[:width], 3
+
+      shape = category.shape
+      # Shapes
+      pdf.translate( 0, -3.5 ) do
+        pdf.send("#{shape}_shape")
+      end
+      pdf.translate( info[:width] - 45.36, -3.5 ) do
+        pdf.send("#{shape}_shape")
+      end
+        
+      # Text
+      pdf.fill_color( '000000' )
+      pdf.font("Helvetica")
+      pdf.font_size(10)
+      pdf.move_down 17.5
+      label.split(' ').each do |label|
+        pdf.move_up 2
+        pdf.text label, :align => :center, :character_spacing => 1, :style => :bold
+      end
+    end    
+    send_data doc.render, filename: "labels.pdf",
+                          type: "application/pdf",
+                          disposition: "inline"
+    
+  end
+
   def labels
     since = Date.parse( params[:since] )
     media = Media.where('subcategory_id IS NOT NULL AND created_at > :since', :since => since )      

@@ -16,6 +16,11 @@ module ApplicationHelper
     yield unless current_user.try(:member?)
   end
   
+  def category_label( category )
+    shape = Category::SHAPE_SYMBOLS[ category.shape ]
+    content_tag( :span, raw("#{shape} #{category.code} #{shape}"), :style => "color: ##{category.color};", :class => 'label' )
+  end
+  
   def active_link_to( )
   end
   

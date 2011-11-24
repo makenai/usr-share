@@ -25,6 +25,15 @@ class Category < ActiveRecord::Base
     diamond
   }
   
+  SHAPE_SYMBOLS = {
+    'square'   => '&#9724;',
+    'x'        => '&#10006;',
+    'plus'     => '&#10010;',
+    'triangle' => '&#9650;',
+    'circle'   => '&#9864;',
+    'diamond'  => '&#9830;'
+  }
+  
   def name_with_code
     "#{code} - #{name}"
   end

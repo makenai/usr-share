@@ -12,3 +12,13 @@
 #mediasearch {
   text-align: right;
 }
+
+span.label {
+  background-color: white;
+  width: 80px;
+  text-align: center;
+  display: block;
+  font-weight: bold;
+  font-family: Helvetica, sans-serif;
+  border: 1px solid black;
+}

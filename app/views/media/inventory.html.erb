@@ -5,7 +5,7 @@
   <td><%= media.label.join(' ') %></td>
   <td>
     <% if media.subcategory %>
-    <span style="font-weight: bold; color: #<%= media.subcategory.category.color %>"><%= media.subcategory.category.shape %></span>
+      <%= category_label( media.subcategory.category ) %>
     <% end %>
   </td>
 </tr>

@@ -29,15 +29,7 @@
         <br />
         You are an <%= link_to 'ADMIN', admin_path %>!
         <% end %>
-      </div>
-      
-      
-      <%= form_tag(searches_path, :method => 'get') do %>
-      <%= text_field_tag :q, params[:q], :size => '30' %>	
-      <%= submit_tag "Search", :name => nil %>
-      <% end %>
-      
-      
+      </div>      
     </div>   
     <div id="menu" class="span-24">
       <ul>
@@ -56,11 +48,11 @@
       <div class="flash <%= name %>"><%= msg %><a class="close" href="#close">close</a></div>
     <% end %>      
     <% if content_for?(:sidebar) %>
-      <div id="content" class="span-16">
+      <div id="content" class="span-19">
         <%= content_tag :h1, yield(:title) if show_title? %>
         <%= yield %>
       </div>
-      <div id="sidebar" class="span-8 last"><div id="sidebar-container"><%= yield :sidebar %></div></div>
+      <div id="sidebar" class="span-5 last"><div id="sidebar-container"><%= yield :sidebar %></div></div>
     <% else %>
       <div id="content" class="span-24">
         <%= content_tag :h1, yield(:title) if show_title? %>

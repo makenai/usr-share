@@ -56,7 +56,16 @@ class MediaController < ApplicationController
   
   def search
     term = params[:term]
-    @media = Media.where(["title LIKE :term", { :term => "%#{term}%" }]).order('title ASC').page( params[:page] )
+    @search = Media.search do
+      fulltext params[:term]
+      facet(:category)
+      with(:category, params[:category]) if params[:category].present?
+      facet(:subcategory)
+      with(:subcategory, params[:subcategory]) if params[:subcategory].present?
+      paginate :page => params[:page]
+    end
+    # @media = Media.where(["title LIKE :term", { :term => "%#{term}%" }]).order('title ASC').page( params[:page] )
+    @media = @search.results
     render :action => 'index'
   end
   

@@ -1,5 +1,23 @@
 <% title "Media" %>
 
+<% if @search %>
+  <%= content_for :sidebar do %>
+  <h4>Categories</h4>
+  <ul>
+    <% for row in @search.facet(:category).rows %>
+      <li>
+        <% if params[:category].blank? %>
+          <%= link_to row.value, :category => row.value, :term => params[:term] %> (<%= row.count %>)
+        <% else %>
+          <strong><%= row.value %></strong> (<%= link_to "remove", :category => nil, :term => params[:term] %>)
+        <% end %>
+      </li>
+    <% end %>
+  </ul>
+  <% end %>
+<% end %>
+
+
 <p>
 <%= form_tag search_media_index_path, :method => 'get', :id => 'mediasearch' do %>
     <%= text_field_tag :term, params[:term] %>
@@ -16,7 +34,7 @@
 <% end %>
 
 <div class="clear">
-  <%= paginate @media %>
+  <%= paginate @search || @media %>
 </div>
 
 <% admin_content do %>

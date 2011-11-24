@@ -20,6 +20,7 @@ gem "prawn-labels", :git => 'git://github.com/makenai/prawn-labels.git'
 gem "carmen"
 gem "embedly"
 gem "sunspot_rails"
+gem "sunspot_with_kaminari"
 
 group :development do
   gem "nifty-generators"

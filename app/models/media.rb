@@ -15,9 +15,19 @@ class Media < ActiveRecord::Base
   #for solr search
   searchable do
     text :title, :boost => 2
-    
     text :description
-    string :subcategory #for faceted search
+    text :authors do
+      authors.map(&:name)
+    end
+    string :publisher do
+      publisher.name
+    end
+    string :subcategory do
+      subcategory.name
+    end
+    string :category do
+      subcategory.category.name
+    end
   end    
   
   def self.from_amazon_item( item )

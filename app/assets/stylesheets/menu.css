@@ -7,7 +7,7 @@
   text-transform: uppercase;
   list-style: none;
   padding: 0;
-  margin: 0 auto;
+  margin: 0 auto;  
   width: 100%;
 }
 
@@ -28,6 +28,14 @@
   text-decoration: none;
   border-bottom: 1px solid white;
   border-right: 1px solid white;  
+}
+
+#menu li.last a {
+  border-right: none;
+}
+
+#menu ul.bottom a {
+  border-bottom: none;
 }
 
 #menu>ul li a { width: auto; }

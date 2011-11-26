@@ -1,0 +1,64 @@
+.fieldWithErrors {
+  display: inline;
+}
+
+.error_messages {
+  width: 400px;
+  border: 2px solid #CF0000;
+  padding: 0px;
+  padding-bottom: 12px;
+  margin-bottom: 20px;
+  background-color: #f0f0f0;
+  font-family: franklin-gothic-urw,sans-serif;  
+  font-size: 16px;
+  -moz-border-radius: 5px;
+  border-radius: 5px;  
+}
+
+.error_messages h2 {
+  text-align: left;
+  text-transform: uppercase;
+  font-weight: bold;
+  padding: 5px 10px;
+  margin: 0;
+  color: white !important;
+  background-color: #c00;
+  font-size: 18px;
+  color: #fff;    
+}
+
+.error_messages p {
+  margin: 8px 10px;
+}
+
+.error_messages ul {
+  margin: 0;
+}
+
+.error,
+.alert,
+.notice,
+.success,
+.info { padding: 0.8em; margin-bottom: 1em; border: 2px solid #ddd; }
+
+.error, .alert { background: #fbe3e4; color: #8a1f11; border-color: #fbc2c4; }
+.notice        { background: #fff6bf; color: #514721; border-color: #ffd324; }
+.success       { background: #e6efc2; color: #264409; border-color: #c6d880; }
+.info          { background: #d5edf8; color: #205791; border-color: #92cae4; }
+.error a, .alert a { color: #8a1f11; }
+.notice a          { color: #514721; }
+.success a         { color: #264409; }
+.info a            { color: #205791; }
+
+.flash {
+  position: relative;
+  a.close {
+    height: 12px;
+    width: 24px;
+    font-size: 10px;
+    position: absolute;
+    text-align: right;
+    top: 4px;
+    right: 4px;
+  }
+}

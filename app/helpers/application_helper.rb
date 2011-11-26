@@ -20,8 +20,28 @@ module ApplicationHelper
     shape = Category::SHAPE_SYMBOLS[ category.shape ]
     content_tag( :span, raw("#{shape} #{category.code} #{shape}"), :style => "color: ##{category.color};", :class => 'label' )
   end
-  
-  def active_link_to( )
+
+  def link_to_active_if( condition, link_title, link_path = {}, opts = {} )
+    if condition
+      classes = opts.delete(:class) || ""
+      classes.rstrip!
+      # checking to see if "active" is already one of the classes assigned, and if NOT, append it to the classes string
+      unless classes =~ /^(\w*\s+)*active(?!\w)/ 
+        if classes.blank? 
+          classes = 'active'
+        else
+          classes << " active"
+        end         
+      end    
+    end
+    old_opts = opts.dup
+    link_to_if( condition, link_title, link_path, opts.merge( {:class => classes} ) ) {
+      link_to( link_title, link_path, old_opts )
+    }
   end
   
+  def link_to_active_if_current( link_title, link_path = {}, opts = {} )  	  
+   	  link_to_active_if current_page?(link_path), link_title, link_path, opts
+  end
+    
 end

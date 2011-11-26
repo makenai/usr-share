@@ -2,25 +2,36 @@
 <html>
   <head>
     <title><%= content_for?(:title) ? yield(:title) : APP_CONFIG[:name] %></title>
-    <link rel="stylesheet" href="/blueprint/screen.css" type="text/css" media="screen, projection">
-    <link rel="stylesheet" href="/blueprint/print.css" type="text/css" media="print">     
-    <!--[if lt IE 8]>
-      <link rel="stylesheet" href="/blueprint/ie.css" type="text/css" media="screen, projection">
-    <![endif]-->    
-    <script type="text/javascript" src="http://use.typekit.com/xeh3goa.js"></script>
-    <script type="text/javascript">try{Typekit.load();}catch(e){}</script>
+    <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico">
     <%= stylesheet_link_tag    "application" %>
     <%= javascript_include_tag "application" %>
     <%= csrf_meta_tag %>
     <%= yield(:head) %>
+    <script type="text/javascript" src="http://use.typekit.com/xeh3goa.js"></script>
+    <script type="text/javascript">try{Typekit.load();}catch(e){}</script>
+    <script type="text/javascript">
+      var _gaq = _gaq || [];
+      _gaq.push(['_setAccount', 'UA-27283823-1']);
+      _gaq.push(['_trackPageview']);
+
+      (function() {
+        var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+        ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+        var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+      })();
+    </script>
   </head>
-  <body class="orange">  
-  <div class="container">
-    <div id="header" class="span-24">
-      <h1>/usr/lib</h1>
+<% if @base_color %>
+  <body class="<%= @base_color %>">
+<% else %>
+  <body>
+<% end %>
+  <div class="container_12">
+    <div id="header" class="grid_12">
+      <h1><%= link_to '/usr/lib', root_path %></h1>
       <div id="signup">
         <% if user_signed_in? %>
-          Hi, <%= link_to current_user.name, edit_user_registration_path( current_user ) %>!. Want to
+          Hi, <%= link_to current_user.name, edit_user_registration_path( current_user ) %>! Want to
           <%= link_to "SIGN OUT", destroy_user_session_path, :method => :delete %>?
         <% else %>
           <%= link_to "SIGN UP", new_user_registration_path %> or <%= link_to "SIGN IN", new_user_session_path %>
@@ -30,39 +41,41 @@
         You are an <%= link_to 'ADMIN', admin_path %>!
         <% end %>
       </div>      
-    </div>   
-    <div id="menu" class="span-24">
-      <ul>
-        <li><%= link_to "Home", root_path %></li>
-        <li><%= link_to "News", posts_path %></li>
-        <li><%= link_to "Become a Member", new_member_path %></li>
-        <li><%= link_to "Catalog", media_index_path %></li>
-        <li><%= link_to "Location", locations_path %></li>
-        <li><%= link_to "Events", events_path %></li>
-        <li><%= link_to "Reserve a Room", new_event_path %></li>
-        <li><%= link_to "Recommend a Book", new_recommendation_path %></li>                        
-      </ul>
     </div>
-    <hr />
-    <% flash.each do |name, msg| %>
-      <div class="flash <%= name %>"><%= msg %><a class="close" href="#close">close</a></div>
-    <% end %>      
+    <div id="menu" class="grid_12">
+      <ul>
+        <li><%= link_to_active_if_current "Home", root_path %></li>
+        <li><%= link_to_active_if_current "News", posts_path %></li>
+        <li><%= link_to_active_if_current "Become a Member", new_member_path %></li>
+        <li class="last"><%= link_to_active_if_current "Catalog", media_index_path %></li>
+      </ul>
+      <ul class="bottom">
+        <li><%= link_to_active_if_current "Location", locations_path %></li>
+        <li><%= link_to_active_if_current "Events", events_path %></li>
+        <li><%= link_to_active_if_current "Reserve a Room", new_event_path %></li>
+        <li class="last"><%= link_to_active_if_current "Recommend a Book", new_recommendation_path %></li>                        
+      </ul class="last">
+      <br class="clear" />
+      <hr />
+    </div>
     <% if content_for?(:sidebar) %>
-      <div id="content" class="span-19">
+      <div id="content" class="grid_9">
+        <%= render :partial => 'shared/flash', :locals => { flash: flash } %>        
         <%= content_tag :h1, yield(:title) if show_title? %>
         <%= yield %>
       </div>
-      <div id="sidebar" class="span-5 last"><div id="sidebar-container"><%= yield :sidebar %></div></div>
+      <div id="sidebar" class="grid_3"><div id="sidebar-container"><%= yield :sidebar %></div></div>
     <% else %>
-      <div id="content" class="span-24">
+      <div id="content" class="grid_12">
+        <%= render :partial => 'shared/flash', :locals => { flash: flash } %>        
         <%= content_tag :h1, yield(:title) if show_title? %>
         <%= yield %>
       </div>    
     <% end %>
-    <hr />
-    <div id="footer" class="span-24">
+    <div id="footer" class="grid_12">
+      <hr />
       Copyright <%= Time.now.year %>, usrlib.org.
-      Powered by <%= link_to '/usr/share', share_page_path %>.      
+      Powered by <%= link_to '/usr/share', share_page_path %>.
     </div>    
   </div>
 

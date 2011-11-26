@@ -3,12 +3,31 @@
     color: $color;
   }
   hr, #sidebar, blockquote { background-color: $color }
+  #calendar th  { background-color: $color; color: white; }
+  .invert {
+    background-color: $color;
+    color: white;
+    padding: 5px 15px;    
+    a { color: white; }
+  }
+  #menu li a.active {
+    background-color: $color;
+    color: white;    
+  }
+}
+
+body {
+  @include colorPage(#ed4c22);
 }
 
 body.orange {
-  @include colorPage(#f06538);
+  @include colorPage(#ed4c22);
 }
 
-body.red {
-  @include colorPage(#ff0000);
+body.blue {
+  @include colorPage(#368dbb);
+}
+
+body.green {
+  @include colorPage(#3bca44);
 }

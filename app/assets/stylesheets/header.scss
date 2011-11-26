@@ -4,12 +4,19 @@
 
 #header h1 {
   background-image: url('usrlib.png');
+  display: block;
   width: 201px;
   height: 93px;
   overflow: hidden;
   margin-left: 20px;
   margin-top: 20px;
-  text-indent: 100%;
+  text-indent: -2000px;
+}
+
+#header h1 a {
+  display: block;
+  width: 201px;
+  height: 93px;
 }
 
 #header #signup {

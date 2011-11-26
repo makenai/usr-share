@@ -1,4 +1,5 @@
-<% title @post.title %>
+<% color 'green' %>
+<% title @post.title, :class => 'invert' %>
 <p>Posted <%= time_ago_in_words( @post.created_at ) %> ago by <%= @post.user.name %></p>
 <%= raw @post.body %>
 <% admin_content do %>

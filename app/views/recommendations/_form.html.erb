@@ -5,8 +5,8 @@
     <%= f.text_field :title %>
   </p>
   <p>
-    <%= f.label :url, "Where can we find it? (Amazon is preferred)" %><br />
-    <%= f.text_field :url %>
+    <%= f.label :url, "What's the URL where can we buy it? (Amazon is preferred)" %><br />
+    <%= f.text_field :url, :placeholder => 'http://some.url' %>
   </p>
   <p>
     <%= f.label :description, "Why do you think we should we get it?" %><br />

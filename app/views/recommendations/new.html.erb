@@ -1,7 +1,12 @@
+<% color 'green' %>
 <% title "Recommend a Book" %>
 
 <p><%= link_to "See All Recommendations", recommendations_path %></p>
 
+<% if current_user %>
 <%= render 'form' %>
+<% else %>
+<p>You need to <%= link_to 'log in', new_user_session_path %> to make a recommendation.</p>
+<% end %>
 
 

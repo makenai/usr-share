@@ -8,10 +8,10 @@ h1, h2, h3, h4, label {
   font-weight: bold;
 }
 
-h1 { font-size: 50px; }
-h2 { font-size: 40px; }
-h3 { font-size: 30px; }
-h4, label { font-size: 20px; }
+h1 { font-size: 40px; }
+h2 { font-size: 30px; }
+h3 { font-size: 24px; }
+h4, label { font-size: 18px; }
 
 label {
   margin: 0;
@@ -19,10 +19,11 @@ label {
 }
 
 hr {
-  margin: 3px 0;
+  margin: 3px 0;  
   padding: 0;
   height: 12px;
   background: url('stripes.png') #000;
+  border: none;
 }
 
 a {
@@ -53,12 +54,6 @@ blockquote {
   padding: 10px;
 }
 
-.flash {
-  position: relative;
-  a.close {
-    font-size: 10px;
-    position: absolute;
-    top: 4px;
-    right: 4px;
-  }
-}
+.clear { clear:both; }
+.left {float:left !important;}
+.right {float:right !important;}

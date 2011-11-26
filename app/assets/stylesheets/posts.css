@@ -1,0 +1,8 @@
+.post h2 {
+  margin-bottom: 4px;
+}
+.post .meta {
+  font-size: 16px;
+  font-style: italic;
+  margin-bottom: 20px;
+}

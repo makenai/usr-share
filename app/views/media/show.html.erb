@@ -1,27 +1,19 @@
-<% title @media.title %>
+<% title @media.title, false %>
+<% color 'blue' %>
 
-<% @media.authors.each do |author| %>
-  <%= author.name %><br />
-<% end %>
+<%= image_tag( @media.image_url, :height => 200, :class => 'left' ) %>
 
-<%= image_tag( @media.image_url ) %>
-
-<table>
-  <tr><td>isbn:</td><td><%= @media.isbn %></td></tr>
-  <tr><td>asin:</td><td><%= @media.asin %></td></tr>  
-</table>
-
-<p id="description">
+<div id="description">
+  <h2><%= @media.title %></h2>
+  <h3><%= @media.authors.map(&:name).join(', ') %></h3>
+  <p><%= media_label @media %></p>
   <%= raw @media.description %>
-</p>
+</div>
 
-
+<% admin_content do %>
 <p>
   <%= link_to "Edit", edit_media_path(@media) %> |
   <%= link_to "Destroy", @media, :confirm => 'Are you sure?', :method => :delete %> |
   <%= link_to "View All", media_index_path %>
 </p>
-
-<p>
-Comments and social media junk goes here.
-</p>
+<% end %>

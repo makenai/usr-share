@@ -51,10 +51,13 @@
 .info a            { color: #205791; }
 
 .flash {
+  -moz-border-radius: 5px;
+  border-radius: 5px;  
   position: relative;
   a.close {
     height: 12px;
-    width: 24px;
+    width: 36px;
+    padding: 2px;
     font-size: 10px;
     position: absolute;
     text-align: right;

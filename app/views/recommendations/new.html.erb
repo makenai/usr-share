@@ -1,7 +1,9 @@
-<% color 'green' %>
 <% title "Recommend a Book" %>
 
-<p><%= link_to "See All Recommendations", recommendations_path %></p>
+<% content_for( :sidebar ) do %>
+<h3>Recommended</h3>
+<%= link_to "See All Recommendations", recommendations_path %>
+<% end %>
 
 <% if current_user %>
 <%= render 'form' %>

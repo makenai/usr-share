@@ -1,11 +1,13 @@
 <% color 'green' %>
-<% title @post.title, :class => 'invert' %>
-<p>Posted <%= time_ago_in_words( @post.created_at ) %> ago by <%= @post.user.name %></p>
-<%= raw @post.body %>
-<% admin_content do %>
-<p>
-  <%= link_to "Edit", edit_post_path(@post) %> | 
-  <%= link_to "Destroy", @post, :confirm => 'Are you sure?', :method => :delete %>
-</p>
-<% end %>
-
+<% title @post.title, false %>
+<div class="post">
+  <h1><%= raw @post.title %></h1>
+  <div class="meta">Posted <%= time_ago_in_words( @post.created_at ) %> ago by <%= @post.user.name %></div>
+  <%= raw @post.body %>
+  <% admin_content do %>
+  <p>
+    <%= link_to "Edit", edit_post_path(@post) %> | 
+    <%= link_to "Destroy", @post, :confirm => 'Are you sure?', :method => :delete %>
+  </p>
+  <% end %>
+</div>

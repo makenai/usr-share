@@ -42,12 +42,21 @@ blockquote {
   margin: 10px 0;
 }
 
+#content {
+  position: relative;
+}
+
 #sidebar {
   color: #FFF;
   background-color: #000;
   min-height: 200px;
   h1, h2, h3, h4 { color: white; }
   a { color: white }
+}
+
+#sidebar {
+  ul { margin: 0; padding: 0; }
+  li { margin-left: 16px; padding: 0; }
 }
 
 #sidebar-container {
@@ -57,3 +66,19 @@ blockquote {
 .clear { clear:both; }
 .left {float:left !important;}
 .right {float:right !important;}
+
+.admin {
+  font-size: 16px;
+  font-family: franklin-gothic-urw,sans-serif;
+  color: #6d00f0;
+  a {
+    color: #6d00f0;
+    text-decoration: underline;
+  }
+}
+
+input, select { 
+  font-size: 16px !important;
+  font-family: franklin-gothic-urw,sans-serif !important;  
+}
+

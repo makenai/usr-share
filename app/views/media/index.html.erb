@@ -1,5 +1,11 @@
 <% color 'blue' %>
-<% title "Media" %>
+
+<% title "Catalogue" %>
+
+<%= form_tag search_media_index_path, :method => 'get', :id => 'mediasearch' do %>
+    <%= text_field_tag :term, params[:term] %>
+    <%= submit_tag "Search", :name => nil %>
+<% end %>
 
 <% if @search %>
   <%= content_for :sidebar do %>
@@ -10,7 +16,7 @@
         <% if params[:category].blank? %>
           <%= link_to row.value, :category => row.value, :term => params[:term] %> (<%= row.count %>)
         <% else %>
-          <strong><%= row.value %></strong> (<%= link_to "remove", :category => nil, :term => params[:term] %>)
+          <%= link_to raw("#{row.value} &uarr;"), :category => nil, :term => params[:term] %>
         <% end %>
       </li>
     <% end %>
@@ -18,17 +24,9 @@
   <% end %>
 <% end %>
 
-
-<p>
-<%= form_tag search_media_index_path, :method => 'get', :id => 'mediasearch' do %>
-    <%= text_field_tag :term, params[:term] %>
-    <%= submit_tag "Search", :name => nil %>
-<% end %>
-</p>
-
 <% for media in @media %>
 <div class="media">
-  <%= link_to image_tag( media.image_url, :height => 275 ), media %>
+  <%= link_to image_tag( media.image_url, :height => 175 ), media %>
   <div class="title"><%= link_to raw( media.title ), media %></div>
   <div class="author"><%= media.authors.collect { |a| a.name }.join(', ') %></div>
 </div>

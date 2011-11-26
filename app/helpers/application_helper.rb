@@ -1,7 +1,7 @@
 module ApplicationHelper
   
   def admin_content
-    yield if current_user.try(:admin?)
+    concat content_tag( 'span', :class => 'admin' ) { yield } if current_user.try(:admin?)
   end
   
   def nonadmin_content
@@ -19,6 +19,14 @@ module ApplicationHelper
   def category_label( category )
     shape = Category::SHAPE_SYMBOLS[ category.shape ]
     content_tag( :span, raw("#{shape} #{category.code} #{shape}"), :style => "color: ##{category.color};", :class => 'label' )
+  end
+  
+  def media_label( media )
+    category = media.subcategory.category
+    shape = Category::SHAPE_SYMBOLS[ category.shape ]
+    content_tag( :span, raw("#{shape} #{media.label.join(' ')} #{shape}"), :style => "color: ##{category.color};", :class => 'medialabel' )    
+  rescue
+    ''
   end
 
   def link_to_active_if( condition, link_title, link_path = {}, opts = {} )

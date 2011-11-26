@@ -1,4 +1,4 @@
-.post h2 {
+.post h2, .post h1 {
   margin-bottom: 4px;
 }
 .post .meta {

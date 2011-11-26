@@ -1,15 +1,23 @@
 .media {
-  width: 200px;
-  height: 360px;
+  width: 135px;
+  height: 275px;
   display: block;
   float: left;
   margin-left: 30px;
   margin-bottom: 30px;
   text-align: center;
+  font-size: 12px;
   overflow: hidden;
 }
 
 #mediasearch {
+  position: absolute;
+  top: 20px;
+  right: 0;
+}
+
+#mediasearch input[type="text"] {
+  width: 300px;
 }
 
 span.label {
@@ -19,5 +27,21 @@ span.label {
   display: block;
   font-weight: bold;
   font-family: Helvetica, sans-serif;
+  border: 1px solid black;
+}
+
+div#description {
+  margin-left: 220px;
+}
+
+span.medialabel {
+  width: 240px;
+  padding: 10px;
+  background-color: white;
+  text-align: center;
+  display: block;
+  font-weight: bold;
+  font-family: Helvetica, sans-serif;
+  font-size: 25px;
   border: 1px solid black;
 }

@@ -3,3 +3,7 @@
 
 en:
   hello: "Hello world"
+  activerecord:
+    errors:
+      header: "BAD JOB! （╯°□°）╯︵ ┻━┻"
+      message: "Please correct the following errors and try again."

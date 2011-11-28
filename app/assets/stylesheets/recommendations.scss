@@ -1,0 +1,54 @@
+.latestRecommendations {
+  text-align: center;
+  div.bookTile {
+    width: 55px;
+    height: 55px;
+    overflow: hidden;
+    float: left;
+    margin-left: 10px;
+    margin-bottom: 10px;    
+  }
+}
+
+.recommendation {
+  margin-bottom: 20px;
+}
+
+.upvoted {
+  .upvote, a.up, .score {
+    font-weight: bold;
+    color: #ed4c22;
+  }
+}
+
+.downvoted {
+  .downvote, a.down, .score {
+    font-weight: bold;
+    color: #368dbb;
+  }
+}  
+
+.recommendation .voting {
+  font-family: franklin-gothic-urw,sans-serif;  
+  width: 50px;
+  float: left;
+  font-size: 16px;  
+  text-align: center;
+  a {
+    display: block;
+  }
+}
+
+.recommendation img {
+  float: left;
+}
+
+.recommendation .notes {
+  margin-left: 120px;
+}
+
+.recommendation cite {
+  display: block;
+  font-size: 12px;
+  margin-bottom: 5px;
+}

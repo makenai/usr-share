@@ -2,7 +2,7 @@
   h1, h2, h3, h4, label {
     color: $color;
   }
-  hr, #sidebar, blockquote { background-color: $color }
+  hr, #sidebar { background-color: $color }
   #calendar th  { background-color: $color; color: white; }
   .invert {
     background-color: $color;

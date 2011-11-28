@@ -32,9 +32,8 @@
 </div>
 <% end %>
 
-<div class="clear">
-  <%= paginate @search || @media %>
-</div>
+<br class="clear" />
+<%= paginate @search || @media %>
 
 <% admin_content do %>
 <p><%= link_to "New Media", new_media_path %></p>

@@ -47,6 +47,8 @@ GEM
       activesupport (= 3.1.0)
     activesupport (3.1.0)
       multi_json (~> 1.0)
+    acts_as_votable (0.1.2)
+      rails (>= 3.0.0)
     addressable (2.2.6)
     amazon-ecs (2.2.2)
       nokogiri (~> 1.4)
@@ -217,6 +219,7 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
+  acts_as_votable
   amazon-ecs
   carmen
   coffee-rails (~> 3.1.0)

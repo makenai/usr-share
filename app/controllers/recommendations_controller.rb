@@ -4,7 +4,7 @@ class RecommendationsController < ApplicationController
   before_filter :authenticate_admin!, :only => [ :edit, :update, :destroy ]
   
   def index
-    @recommendations = Recommendation.page(params[:page])
+    @recommendations = Recommendation.by_votes.page(params[:page])
   end
 
   def show
@@ -13,6 +13,7 @@ class RecommendationsController < ApplicationController
 
   def new
     @recommendation = Recommendation.new
+    @recommendations = Recommendation.latest
   end
 
   def create
@@ -43,4 +44,21 @@ class RecommendationsController < ApplicationController
     @recommendation.destroy
     redirect_to recommendations_url, :notice => "Successfully destroyed recommendation."
   end
+  
+  def upvote
+    if current_user
+      @recommendation = Recommendation.find(params[:recommendation_id])
+      @recommendation.upvote_by( current_user )
+    end
+    render 'vote'
+  end
+  
+  def downvote
+    if current_user
+      @recommendation = Recommendation.find(params[:recommendation_id])
+      @recommendation.downvote_by( current_user )
+    end
+    render 'vote'
+  end
+  
 end

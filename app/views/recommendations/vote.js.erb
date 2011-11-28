@@ -1,0 +1,6 @@
+<% if @recommendation %>
+  $('#recommendation<%= @recommendation.id %> .score').text('<%= @recommendation.score %>');
+  $('#recommendation<%= @recommendation.id %>').removeClass('upvoted downvoted').addClass('<%= voting_class( current_user, @recommendation ) %>')
+<% else %>
+  alert('Sorry, you must sign in to vote.');
+<% end %>

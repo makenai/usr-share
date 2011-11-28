@@ -1,8 +1,15 @@
 <% title "Recommend a Book" %>
 
 <% content_for( :sidebar ) do %>
-<h3>Recommended</h3>
-<%= link_to "See All Recommendations", recommendations_path %>
+<h3>Recent</h3>
+<div class="latestRecommendations">
+<% @recommendations.each do |recommendation| %>
+  <div class="bookTile"><%= link_to image_tag( recommendation.image_url, :width => 55 ), 
+    recommendations_path( :anchor => "recommendation#{recommendation.id}" ) %></div>
+<% end %>
+<br class="clear" />
+<p><%= link_to "See All Recommendations", recommendations_path %></p>
+</div>
 <% end %>
 
 <% if current_user %>

@@ -32,25 +32,16 @@ a {
   text-decoration: none;
 }
 
-blockquote {
-  padding: 10px;
-  background-color: black;
-  color: #FFF;
-  font-family: franklin-gothic-urw,sans-serif;  
-  font-size: 35px;
-  font-style: normal;
-  margin: 10px 0;
-}
-
 #content {
   position: relative;
 }
 
 #sidebar {
   color: #FFF;
+  font-family: franklin-gothic-urw,sans-serif;  
   background-color: #000;
   min-height: 200px;
-  h1, h2, h3, h4 { color: white; }
+  h1, h2, h3, h4 { color: white; text-transform: uppercase; }
   a { color: white }
 }
 

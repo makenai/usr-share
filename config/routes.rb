@@ -20,7 +20,10 @@ Usrshare::Application.routes.draw do
   resources :events
   resources :rooms
   resources :locations
-  resources :recommendations
+  resources :recommendations do
+    post 'upvote'
+    post 'downvote'
+  end
   resources :media_locations
   resources :publishers
   resources :authors

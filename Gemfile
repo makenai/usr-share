@@ -21,6 +21,7 @@ gem "carmen"
 gem "embedly"
 gem "sunspot_rails"
 gem "sunspot_with_kaminari"
+gem "acts_as_votable"
 
 group :development do
   gem "nifty-generators"

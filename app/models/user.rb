@@ -11,6 +11,8 @@ class User < ActiveRecord::Base
   validates_presence_of :name
   validates_uniqueness_of :name, :case_sensitive => false
   
+  acts_as_voter
+  
   def member?
     self.member.try(:active?) ? true : false
   end

@@ -30,7 +30,7 @@ class Category < ActiveRecord::Base
     'x'        => '&#10006;',
     'plus'     => '&#10010;',
     'triangle' => '&#9650;',
-    'circle'   => '&#9864;',
+    'circle'   => '&#9899;',
     'diamond'  => '&#9830;'
   }
   

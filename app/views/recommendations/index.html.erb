@@ -1,20 +1,33 @@
 <% title "Recommendations" %>
 
-<% @recommendations.each_with_index do |recommendation,i| %>
-<%= link_to recommendation.title, recommendation.url %>
-<p>Recommended by <%= recommendation.user.name %>, <%= time_ago_in_words( recommendation.created_at ) %> ago</p>
-<p>Says <%= recommendation.user.name %>: "<%= raw recommendation.description %>"</p>
-<%= raw recommendation.html %>
-<% admin_content do %>
-<p>
-  <%= link_to "Show", recommendation %>
-  <%= link_to "Edit", edit_recommendation_path(recommendation) %>
-  <%= link_to "Destroy", recommendation, :confirm => 'Are you sure?', :method => :delete %>
 </p>
-<% end %>
-<% if i < @recommendations.length - 1 %><hr /><% end %>
+  <%= link_to 'Would you like to add something?', new_recommendation_path %>
+</p>
+
+<% @recommendations.each_with_index do |recommendation,i| %>
+<a name="recommendation<%= recommendation.id %>">
+<div class="recommendation <%= voting_class( current_user, recommendation )%>" id="recommendation<%= recommendation.id %>">
+  <div class="voting">
+    <%= link_to raw('&#11014;'), recommendation_upvote_path( recommendation ), :method => :post, :remote => true, :class => 'up' %>
+    <span class="score"><%= recommendation.score %></span>
+    <%= link_to raw('&#11015;'), recommendation_downvote_path( recommendation ), :method => :post, :remote => true, :class => 'down' %>
+  </div>
+  
+  <%= link_to image_tag( recommendation.image_url, :width => 55 ), recommendation.url %>
+  
+  <div class="notes">
+    <%= link_to recommendation.user_title, recommendation.url %><br />
+    <cite><%= recommendation.user.name %> recommended this <%= time_ago_in_words( recommendation.created_at ) %> ago, saying:</cite>
+    <blockquote>"<%= raw recommendation.notes %>"</blockquote>
+    <% admin_content do %>
+      <%= link_to "Show", recommendation %>
+      <%= link_to "Edit", edit_recommendation_path(recommendation) %>
+      <%= link_to "Destroy", recommendation, :confirm => 'Are you sure?', :method => :delete %>
+    <% end %>
+  </div>
+</div>
+</a>
 <% end %>
 
-<div class="clear">
-  <%= paginate @recommendations %>
-</div>
+<br class="clear" />
+<%= paginate @recommendations %>

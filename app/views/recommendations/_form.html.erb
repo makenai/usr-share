@@ -1,16 +1,16 @@
 <%= form_for @recommendation do |f| %>
   <%= f.error_messages %>
   <p>
-    <%= f.label :title %><br />
-    <%= f.text_field :title %>
+    <%= f.label :user_title, 'What do you call it?' %><br />
+    <%= f.text_field :user_title %>
   </p>
   <p>
     <%= f.label :url, "What's the URL where can we buy it? (Amazon is preferred)" %><br />
     <%= f.text_field :url, :placeholder => 'http://some.url' %>
   </p>
   <p>
-    <%= f.label :description, "Why do you think we should we get it?" %><br />
-    <%= f.text_area :description %>
+    <%= f.label :notes, "Why do you think we should we get it?" %><br />
+    <%= f.text_area :notes %>
   </p>
   <p><%= f.submit %></p>
 <% end %>

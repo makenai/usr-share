@@ -3,7 +3,7 @@
 <% content_for( :sidebar ) do %>
 <h3>Recent</h3>
 <div class="latestRecommendations">
-<% @recommendations.each do |recommendation| %>
+<% Recommendation.latest.each do |recommendation| %>
   <div class="bookTile"><%= link_to image_tag( recommendation.image_url, :width => 55 ), 
     recommendations_path( :anchor => "recommendation#{recommendation.id}" ) %></div>
 <% end %>

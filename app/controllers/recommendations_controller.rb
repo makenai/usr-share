@@ -13,7 +13,6 @@ class RecommendationsController < ApplicationController
 
   def new
     @recommendation = Recommendation.new
-    @recommendations = Recommendation.latest
   end
 
   def create

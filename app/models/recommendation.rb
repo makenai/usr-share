@@ -3,7 +3,7 @@ require 'url_validator'
 class Recommendation < ActiveRecord::Base
   attr_accessible :url, :user_title, :notes, :title, :description, :image_url, :media_id, :user_id,
     :cached_votes_total, :cached_votes_up, :cached_votes_down
-  validates_presence_of :title, :description, :user_id
+  validates_presence_of :user_title, :notes, :user_id
   validates :url, :url => true, :presence => true
   belongs_to :user
   before_save :get_embedly

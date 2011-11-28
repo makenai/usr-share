@@ -8,9 +8,9 @@
 <a name="recommendation<%= recommendation.id %>">
 <div class="recommendation <%= voting_class( current_user, recommendation )%>" id="recommendation<%= recommendation.id %>">
   <div class="voting">
-    <%= link_to raw('&#11014;'), recommendation_upvote_path( recommendation ), :method => :post, :remote => true, :class => 'up' %>
+    <%= link_to raw('&uarr;'), recommendation_upvote_path( recommendation ), :method => :post, :remote => true, :class => 'up' %>
     <span class="score"><%= recommendation.score %></span>
-    <%= link_to raw('&#11015;'), recommendation_downvote_path( recommendation ), :method => :post, :remote => true, :class => 'down' %>
+    <%= link_to raw('&darr;'), recommendation_downvote_path( recommendation ), :method => :post, :remote => true, :class => 'down' %>
   </div>
   
   <%= link_to image_tag( recommendation.image_url, :width => 55 ), recommendation.url %>

@@ -20,13 +20,13 @@ class Media < ActiveRecord::Base
       authors.map(&:name)
     end
     string :publisher do
-      publisher.name
+      publisher.try(:name)
     end
     string :subcategory do
-      subcategory.name
+      subcategory.try(:name)
     end
     string :category do
-      subcategory.category.name
+      subcategory.try(:category).try(:name)
     end
   end    
   

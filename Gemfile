@@ -22,6 +22,7 @@ gem "embedly"
 gem "sunspot_rails"
 gem "sunspot_with_kaminari"
 gem "acts_as_votable"
+gem "stripe", :git => 'https://github.com/stripe/stripe-ruby'
 
 group :development do
   gem "nifty-generators"

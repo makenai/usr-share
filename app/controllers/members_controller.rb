@@ -36,11 +36,26 @@ class MembersController < ApplicationController
   def create
     @member = Member.new(params[:member])
     @member.user_id = current_user.id
+
+    token = Member.create_stripe_token(@member)
+
     if @member.save
-      redirect_to new_member_path, :notice => "Successfully created member."
+      @member = Member.charge_stripe_token(token, @member)
+      @member.save
+
+      case Rails.env
+      when "production" then
+        redirect_to(new_member_path(:host => ENV["SSL_HOST"], :protocol => "http://"), :notice => "Successfully created member.")
+      else
+        redirect_to(new_member_path, :notice => "Successfully created member.")
+      end
     else
-      render :action => 'new'
+      render(:new)
     end
+
+  rescue Stripe::InvalidRequestError, Stripe::CardError => e
+    @member.errors.add(:base, e.message)
+    render(:new)
   end
 
   def edit

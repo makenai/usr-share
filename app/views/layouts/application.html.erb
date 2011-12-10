@@ -46,7 +46,11 @@
       <ul>
         <li><%= link_to_active_if_current "Home", root_path %></li>
         <li><%= link_to_active_if_current "News", posts_path %></li>
-        <li><%= link_to_active_if_current "Become a Member", new_member_path %></li>
+        <% if Rails.env == "production" %>
+          <li><%= link_to_active_if_current "Become a Member", new_member_path(:host => ENV["SSL_HOST"], :protocol => "https://") %></li>
+        <% else %>
+          <li><%= link_to_active_if_current "Become a Member", new_member_path %></li>
+        <% end %>
         <li class="last"><%= link_to_active_if_current "Catalog", search_media_index_path %></li>
       </ul>
       <ul class="bottom">

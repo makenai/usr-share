@@ -37,15 +37,17 @@ class Member < ActiveRecord::Base
 
   def self.charge_stripe_token(token, member)
     if Rails.env == "production"
-      Stripe::Charge.create(
+      charge = Stripe::Charge.create(
         amount: token.amount,
         currency: token.currency,
         card: token.id,
         description: "Membership charge for /usr/lib.")
+      member.stripe_token = charge.id
+    else
+      member.stripe_token = rand(10000)
     end
 
     member.registration_amount = token.amount
-    member.stripe_token = token.id
     member.card_last_four = token.card.last4
     member.card_type = token.card.type
 

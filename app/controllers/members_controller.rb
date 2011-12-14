@@ -35,6 +35,7 @@ class MembersController < ApplicationController
   
   def onboard
     @member = Member.where("card_number IS NULL or card_number = ''").offset( params[:skip].to_i ).first
+    @member.send_pickup_email = true
   end
 
   def create

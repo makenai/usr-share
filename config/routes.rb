@@ -16,7 +16,11 @@ Usrshare::Application.routes.draw do
   devise_for :users
   resources :users , :only => [ :index ]
   resources :checkins
-  resources :members
+  resources :members do
+    collection do
+      get 'onboard'
+    end
+  end
   resources :events
   resources :rooms
   resources :locations

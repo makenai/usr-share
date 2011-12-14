@@ -1,0 +1,30 @@
+<% if @member %>
+<% title "#{@member.name} #{@member.company}" %> 
+<h2><%= @member.user.email %></h2>
+<p>
+  <%= @member.notes %>
+</p>
+<p>
+  <%= link_to 'Edit', edit_member_url( @member ) %> |
+  <%= link_to 'Skip for now >>', onboard_members_url( params.merge( :skip => params[:skip].to_i + 1 ) ) %>
+</p>
+<%= form_for @member do |f| %>
+  <%= hidden_field_tag :redirect_to, onboard_members_url( params ) %>
+  <p>
+    <%= f.label :card_number, 'Access Card Number' %><br />
+    <%= f.text_field :card_number %>
+  </p>
+  <p>
+    <%= f.label :send_pickup_email, 'Send Card Pickup Instruction' %><br />
+    <%= f.check_box :send_pickup_email %>
+  </p>
+  <p>
+    <%= f.label :valid_until %><br />
+    <%= f.datetime_select :valid_until, :default => 1.year.from_now %>
+  </p>
+  <p><%= f.submit %></p>
+<% end %>
+
+<% else %>
+  <% title 'No More Members' %>
+<% end %>

@@ -3,7 +3,7 @@ require 'csv'
 class MembersController < ApplicationController
   
   before_filter :authenticate_user!
-  before_filter :authenticate_admin!, :only => [ :edit, :update, :destroy, :index ]
+  before_filter :authenticate_admin!, :only => [ :edit, :update, :destroy, :index, :onboard ]
   
   def index
     if params[:new]
@@ -32,6 +32,10 @@ class MembersController < ApplicationController
   def new
     @member = Member.new
   end
+  
+  def onboard
+    @member = Member.where("card_number IS NULL or card_number = ''").offset( params[:skip].to_i ).first
+  end
 
   def create
     @member = Member.new(params[:member])
@@ -53,7 +57,11 @@ class MembersController < ApplicationController
       if @member.send_pickup_email
         UserMailer.pickup_email(@member.user).deliver
       end
-      redirect_to @member, :notice  => "Successfully updated member."
+      if params[:redirect_to]
+        redirect_to params[:redirect_to], :notice => "Successfully updated member."
+      else
+        redirect_to @member, :notice => "Successfully updated member."
+      end
     else
       render :action => 'edit'
     end

@@ -40,7 +40,7 @@ en:
       destroyed: 'Bye! Your account was successfully cancelled. We hope to see you again soon.'
       reasons:
         inactive: 'inactive'
-        unconfirmed: 'unconfirmed'
+        unconfirmed: 'unconfirmed. Please check your inbox and follow the confirmation instructions sent by hal900'
         locked: 'locked'
     unlocks:
       send_instructions: 'You will receive an email with instructions about how to unlock your account in a few minutes.'

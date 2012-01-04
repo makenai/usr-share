@@ -1,4 +1,5 @@
 require 'csv'
+require 'prawn'
 
 class MembersController < ApplicationController
   
@@ -13,6 +14,19 @@ class MembersController < ApplicationController
     end
     respond_to do |format|
       format.html
+      format.pdf do
+        pdf = nil
+        @members.each do |member|
+          if pdf
+            pdf.start_new_page :template => Rails.root.join('pdfs/card.pdf')
+          else
+            pdf = Prawn::Document.new :template => Rails.root.join('pdfs/card.pdf')
+            pdf.font Rails.root.join('pdfs/MONACO.TTF')
+          end
+          pdf.draw_text "usr://#{ member.name.to_s.downcase.gsub(/\s+/,'.')}", :size => 10, :at => [-15,-8]          
+        end
+        send_data( pdf.render, :filename => "members-#{Time.now.strftime('%Y-%m-%d')}.pdf", :type => 'application.pdf' ) if pdf
+      end
       format.csv do
         csv = CSV.generate do |csv|
           csv << [ 'name', 'email', 'number' ]
@@ -20,7 +34,7 @@ class MembersController < ApplicationController
             csv << [ member.name.to_s.downcase.gsub(/\s+/,'.'), member.user.email, member.card_number ]
           end
         end
-        send_data( csv, :filename => 'members.csv', :type => 'text/csv' )
+        send_data( csv, :filename => "members-#{Time.now.strftime('%Y-%m-%d')}.csv", :type => 'text/csv' )
       end
     end
   end

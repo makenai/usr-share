@@ -1,7 +1,7 @@
 <%= form_for @member do |f| %>
   <%= f.error_messages %>
   <p>
-    <%= f.label :name %><br />
+    <%= f.label :name, "Full Name (your legal name)" %><br />
     <%= f.text_field :name %>
   </p>
   <p>

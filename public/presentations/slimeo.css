@@ -1,0 +1,40 @@
+body {
+  font-family: Helvetica, Verdana, Arial, sans-serif;
+}
+
+#presentation {
+  text-align: center;
+}
+
+#description {
+  width: 1025px;
+  margin: auto;
+  margin-top: 25px;
+  padding: 25px;
+  border: 1px solid gray;
+  -webkit-border-radius: 10px;
+  -moz-border-radius: 10px;
+  border-radius: 10px;
+  background-color: white;
+  background-color: rgba(255,255,255,0.8);
+}
+
+#footer {
+  font-size: 12px;
+  margin-top: 20px;
+  text-align: center;
+}
+
+h1 {
+  text-align: center;
+  font-size: 40px;
+  margin: 0;
+  padding: 0;
+}
+
+h2 {
+  text-align: center;
+  margin: 0;
+  padding: 0;
+  margin-bottom: 25px;
+}

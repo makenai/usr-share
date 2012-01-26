@@ -10,7 +10,7 @@ var SLIMEO = {
       slides.next();
       setTimeout(function() {
         slides.previous();
-      }, 100);
+      }, 300);
     };
 
     // Set up sorted timings

@@ -41,7 +41,9 @@ Usrshare::Application.routes.draw do
       get 'categorize'
       post 'import'
       get 'inventory'
+      post 'inventory'
       get 'labels'
+      post 'labels'
       get 'quick_labels'      
     end
   end

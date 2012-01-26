@@ -1,43 +1,47 @@
 <% color 'blue' %>
-<div id="calendar">
-  <h2 id="month">
-    <%= link_to "<", :month => (@date.beginning_of_month-1).strftime("%Y-%m") %>
-    <%=h @date.strftime("%B %Y") %>
-    <%= link_to ">", :month => (@date.end_of_month+1).strftime("%Y-%m") %>
+
+<div id="calendarBar">
+  <%= link_to_if @view == 'week', 'Month View', { :month => @date.strftime("%Y-%m") } %> |
+  <%= link_to_if @view == 'month', 'Week View', { :week => @date.strftime("%Y-%m-%d") } %>
+  <div class="formats">
+    <%= link_to image_tag('json_icon.png'), { :format => 'json' } %>
+    <%= link_to image_tag('ical_icon.gif'), { :format => 'ics' } %> 
+  </div>
+</div>
+
+<% if @view == 'week' %>
+
+  <h2 id="date">
+  <% weekly_links(:date => @date) %>
   </h2>
-  <%= calendar_for @events, :year => @date.year, :month => @date.month do |calendar| %>
-    <%= calendar.head('Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday') %>
-    <%= calendar.day(:day_method => :start_time) do |date, events| %>
-      <%= date.day %>
-      <% events.each do |event| %>
-      <%= link_to event.name, event %>
+
+  <% weekly_calendar(@events, :date => @date) do |w| %> 
+    <% w.week do |event,truncate| %> 
+      <%= event.starts_at.strftime('%I:%M%p') %>
+      <%= link_to event.name.truncate(25), event_path(event) %> 
+    <% end -%> 
+  <% end -%>
+  
+<% else %>
+
+  <div id="calendar">
+    <h2 id="date">
+      <%= link_to "<", :month => (@date.beginning_of_month-1).strftime("%Y-%m") %>
+      <%=h @date.strftime("%B %Y") %>
+      <%= link_to ">", :month => (@date.end_of_month+1).strftime("%Y-%m") %>
+    </h2>
+    <%= calendar_for @events, :year => @date.year, :month => @date.month do |calendar| %>
+      <%= calendar.head('Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday') %>
+      <%= calendar.day(:day_method => :start_time) do |date, events| %>
+        <%= date.day %>
+        <% events.each do |event| %>
+          <div class="event">
+            <div class="time"><%= event.starts_at.strftime('%I:%M%p') %> - <%= event.ends_at.strftime('%I:%M%p') %></div>
+            <%= link_to event.name.truncate(25), event %>
+          </div>
+        <% end %>
       <% end %>
     <% end %>
-  <% end %>
-</div> 
+  </div> 
 
-<% if @events.length > 0 %>
-<table>
-  <tr>
-    <th>Event</th>
-    <th>URL</th>
-    <th>Owner</th>
-    <th>Date</th>
-    <th>Time</th>
-  </tr>
-  <% for event in @events %>
-    <tr>
-      <td><%= link_to event.name, event %></td>
-      <td><%= event.url ? link_to( event.url, event.url ) : None %></td>
-      <td><%= event.member.user.name %></td>
-      <td><%= event.start_time.strftime("%a, %B %d") %></td>
-      <td><%= event.start_time.strftime("%I:%M %p") %> - <%= event.end_time.strftime("%I:%M %p") %></td>
-<% admin_content do %>
-      <td><%= link_to "Show", event %></td>
-      <td><%= link_to "Edit", edit_event_path(event) %></td>
-      <td><%= link_to "Destroy", event, :confirm => 'Are you sure?', :method => :delete %></td>
-<% end %>
-    </tr>
-  <% end %>
-</table>
 <% end %>

@@ -1,3 +1,4 @@
+<p><%= @media.size %> items</p>
 <table id="inventory">
 <% @media.sort { |a,b| a.label.join(' ') <=> b.label.join(' ') }.each do |media| %>
 <tr>

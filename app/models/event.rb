@@ -8,4 +8,23 @@ class Event < ActiveRecord::Base
     start_time + duration.hours
   end
   
+  def starts_at
+    start_time.to_datetime
+  end
+  
+  def ends_at
+    end_time.to_datetime
+  end
+  
+  def as_json(options={})
+    {
+      :name => self.name,
+      :description => self.description,
+      :url => self.url,
+      :startDate => self.starts_at,
+      :endDate => self.ends_at,
+      :owner => self.member.user.name
+    }
+  end
+  
 end

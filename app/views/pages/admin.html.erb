@@ -20,7 +20,7 @@
 
 <h3>Labels</h3>
 
-<%= form_tag labels_media_index_path, :method => 'get' do %>
+<%= form_tag labels_media_index_path, :method => 'post' do %>
   <label>Category:
     <%= text_field_tag :category %>
   </label><br />
@@ -38,6 +38,14 @@
   </label><br />
   <%= submit_tag 'Print Labels' %>
 <% end %>
+
+<%= form_tag inventory_media_index_path, :method => 'post' do %>
+  <label>Id List:<br />
+    <%= text_area_tag :ids, '' %>
+  </label><br />
+  <%= submit_tag 'Inventory List' %>
+<% end %>
+
 
 <%= form_tag quick_labels_media_index_path, :method => 'get' do %>
   <%= text_area_tag :labels, '' %><br />

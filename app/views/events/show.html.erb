@@ -1,15 +1,18 @@
 <% title @event.name %>
 
-  <h3>Description</h3>
-  <%= @event.description %>
 <% if @event.url %>
-  <h3>URL</h3>
   <%= link_to @event.url, @event.url %>
 <% end %>
+
+<h3>Description</h3>
+<%= simple_format @event.description %>
+
 <h3>Owner:</h3>
 <%= @event.member.user.name %>
+
 <h3>Start Time:</h3>
 <%= @event.start_time.strftime("%a, %B %d %I:%M %p") %>
+
 <h3>End Time:</h3>
 <%= @event.end_time.strftime("%a, %B %d %I:%M %p") %>
 

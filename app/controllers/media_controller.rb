@@ -100,11 +100,18 @@ class MediaController < ApplicationController
     csv.each do |row|
       if row[7]
         begin
-          if media = Media.amazon_lookup( row[7] )
+          if media = Media.amazon_lookup( row[0] )
             media.location_id = on_order.try(:id)
             if media.save
               count += 1
+            else
+              puts "Could not save #{row[0]}"
+              media.errors.each do |atr,msg|
+                puts "\t#{atr} #{msg}"
+              end
             end
+          else
+            puts "Could not find #{row[0]}"
           end
         rescue Media::LookupException => e
           puts e.message
@@ -117,8 +124,14 @@ class MediaController < ApplicationController
   def inventory
     since = params[:since].blank? ? '2011-11-01' : params[:since]
     @media = Media.where('created_at > :since', :since => since )
+    unless params[:ids].blank?
+      list = params[:ids].split("\n").collect { |id| id.chomp }
+      @media = @media.where('asin IN (:list) OR isbn IN (:list)', :list => list )
+    end    
     respond_to do |format|
-      format.html
+      format.html do
+        render :layout => false
+      end
       format.csv do
         csv = CSV.generate do |csv|
           csv << [ 'cat', 'subcat', 'auth', 'title', 'author' ]
@@ -176,11 +189,11 @@ class MediaController < ApplicationController
 
   def labels
     since = Date.parse( params[:since] )
-    media = Media.where('subcategory_id IS NOT NULL AND created_at > :since', :since => since )      
+    media = Media.where('subcategory_id IS NOT NULL AND created_at > :since', :since => since )    
 
     unless params[:ids].blank?
       list = params[:ids].split("\n").collect { |id| id.chomp }
-      media = media.where('id IN (:list) OR asin IN (:list) OR isbn IN (:list)', :list => list )
+      media = media.where('asin IN (:list) OR isbn IN (:list)', :list => list )
     end
     
     media = media.includes( :subcategory )
@@ -229,7 +242,7 @@ class MediaController < ApplicationController
     end    
     send_data doc.render, filename: "labels.pdf",
                           type: "application/pdf",
-                          disposition: "inline"
+                          disposition: "attachment"
   end
        
 end

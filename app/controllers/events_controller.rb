@@ -4,11 +4,22 @@ class EventsController < ApplicationController
   before_filter :find_room, :only => [ :new ]
 
   def index
-    @date = params[:month] ? Date.parse("#{params[:month]}-01") : Date.today
-    @events = Event.where( 'start_time > :cutoff', :cutoff => Time.now - 1.month ).order('start_time DESC').to_a
+    @view = params[:view] || 'month'
+    if params[:month]
+      @view = 'month'
+      @date = Date.parse("#{params[:month]}-01")
+    end
+    if params[:week]
+      @view = 'week'
+      @date = Time.parse(params[:week])
+    end
+    
+    @date ||= Date.today
+    @events = Event.where( 'start_time > :cutoff', :cutoff => @date.beginning_of_month ).order('start_time ASC').to_a
     respond_to do |format|
       format.html
       format.ics { render :text => render_ics( @events ) }
+      format.json { render :json => @events }
     end
   end
 

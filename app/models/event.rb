@@ -17,14 +17,17 @@ class Event < ActiveRecord::Base
   end
   
   def as_json(options={})
-    {
+    data = {
+      :id => self.id,
+      :url => "http://usrlib.org/events/#{self.id}",
       :name => self.name,
       :description => self.description,
-      :url => self.url,
       :startDate => self.starts_at,
       :endDate => self.ends_at,
       :owner => self.member.user.name
     }
+    data[:infoUrl] = self.url if self.url
+    return data
   end
   
 end

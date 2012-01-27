@@ -14,6 +14,13 @@ GIT
       json
       mime-types
 
+GIT
+  remote: https://github.com/stripe/stripe-ruby
+  revision: e3a3ff2ec9329a0c8b1d158912158ba1aab91ab3
+  specs:
+    stripe (1.5.25)
+      rest-client (~> 1.4)
+
 GEM
   remote: http://rubygems.org/
   specs:
@@ -184,7 +191,7 @@ GEM
     sprockets (2.0.3)
       hike (~> 1.2)
       rack (~> 1.0)
-      tilt (!= 1.3.0, ~> 1.1)
+      tilt (~> 1.1, != 1.3.0)
     sqlite3 (1.3.4)
     sunspot (1.2.1)
       escape (= 0.0.4)
@@ -242,6 +249,7 @@ DEPENDENCIES
   rspec-rails (~> 2.6)
   sass-rails (~> 3.1.0)
   sqlite3
+  stripe!
   sunspot_rails
   sunspot_with_kaminari
   table_builder!

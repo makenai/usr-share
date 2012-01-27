@@ -39,7 +39,23 @@
   <p>
     <%= f.label :notes %><br />
     <%= f.text_area :notes %>
-  </p>  
+  </p>
+  <p>
+    <%= f.label :card_number %><br />
+    <%= f.text_field :card_number %>
+  </p>
+  <p>
+    <%= f.label :card_cvc %><br />
+    <%= f.text_field :card_cvc, :size => 4, :maxlength => 4 %>
+  </p>
+  <p>
+    <%= f.label :card_expiry_month, "Card Expiration Month" %><br />
+    <%= f.select :card_expiry_month, 12.times.collect { |i| i + 1 } %>
+  </p>
+  <p>
+    <%= f.label :card_expiry_year, "Card Expiration Year" %><br />
+    <%= f.select :card_expiry_year, Date.today.year..(Date.today.year + 10) %>
+  </p>
   <% admin_content do %>
   <p>
     <%= f.label :card_number, 'Access Card Number' %><br />
@@ -57,7 +73,7 @@
   <p>
     <%= f.label :confirmation %>
     <p>By checking this box, I affirm that I really want to become a member of /usr/lib, 
-      intend to pay for and pick up my card in a timely manner, and would never flake out 
+      intend to pick up my card in a timely manner, and would never flake out 
       on something like this. I really, really, really mean that.</p>
     <%= f.check_box :confirmation, :checked => !@member.new_record? %>
   </p>

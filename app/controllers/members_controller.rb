@@ -18,7 +18,7 @@ class MembersController < ApplicationController
         pdf = nil
         @members.each do |member|
           if pdf
-            pdf.start_new_page #:template => Rails.root.join('pdfs/card.pdf')
+            pdf.start_new_page :template => Rails.root.join('pdfs/card.pdf')
           else
             pdf = Prawn::Document.new :template => Rails.root.join('pdfs/card.pdf')
             pdf.font Rails.root.join('pdfs/MONACO.TTF')

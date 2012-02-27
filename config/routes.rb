@@ -47,6 +47,7 @@ Usrshare::Application.routes.draw do
       get 'quick_labels'      
     end
   end
+  resource :contact, :controller => 'contact'
   match '/admin' => 'pages#admin'
   match '/reservation_policy' => 'pages#reservation_policy'  
   match '/share' => 'pages#share', :as => :share_page

@@ -1,0 +1,7 @@
+Message from <%= @contact.name %> (<%= @contact.email %>):
+
+<%= @contact.message %>
+
+======
+Remote IP: <%= @request.remote_addr %>
+User Agent: <%= @request.headers["User-Agent"] %>

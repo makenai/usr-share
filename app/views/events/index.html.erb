@@ -40,6 +40,9 @@
             <%= link_to event.name.truncate(25), event %>
           </div>
         <% end %>
+        <% member_content do %>
+          <%= link_to '+', new_event_path( :date => date.strftime('%Y-%m-%d') ), :class => 'reserve-link', :title => 'Reserve' %>
+        <% end %>
       <% end %>
     <% end %>
   </div> 

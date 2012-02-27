@@ -1,4 +1,5 @@
 #footer {
+  position: relative;
   text-align: center;
   font-size: 14px;
   margin-bottom: 10px;
@@ -14,4 +15,10 @@
 
 .ayloo {
   text-align: right;
+}
+
+#contact-link {
+  position: absolute;
+  top: 18px;
+  right: 0;
 }

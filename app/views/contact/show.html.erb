@@ -1,0 +1,22 @@
+<h1>Contact Us</h1>
+
+<%= form_for @contact, :url => contact_path do |f| %>
+  <%= f.error_messages %>
+  <p>
+    <%= f.label :name, "Your Name" %><br />
+    <%= f.text_field :name %>
+  </p>
+
+  <p>
+    <%= f.label :email, "Your Email Address" %><br />
+    <%= f.text_field :email %>
+  </p>
+  
+  <p>
+    <%= f.label :message, "Your Message" %><br />
+    <%= f.text_area :message, :style => 'height: 200px;' %>
+  </p>
+  
+  <p><%= submit_tag 'Send' %></p>
+
+<% end %>

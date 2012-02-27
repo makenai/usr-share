@@ -29,6 +29,10 @@ class EventsController < ApplicationController
 
   def new
     @event = Event.new( :duration => 1 )
+    if params[:date]
+      start_time = Date.parse( params[:date] ).to_time + 9.hours rescue nil
+      @event.start_time = start_time if start_time
+    end
   end
 
   def create

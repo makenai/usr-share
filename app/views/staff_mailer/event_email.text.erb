@@ -1,0 +1,17 @@
+Event: <%= @event.name %>
+<%- if @event.url.present? %>
+URL: <%= @event.url %>
+<% end %>
+
+<%= @event.start_time.strftime("%a, %B %d %I:%M %p") %> - <%= @event.end_time.strftime("%a, %B %d %I:%M %p") %>
+
+http://usrlib.org/events/<%= @event.id %>
+
+Member: <%= @event.member.name %> (<%= @event.member.user.name %>)
+<%- if @event.member.company %>
+Company: <%= @event.member.company %>
+<% end %>
+Phone: <%= @event.member.phone %>
+Email: <%= @event.member.user.email %>
+
+<%= @event.description %>

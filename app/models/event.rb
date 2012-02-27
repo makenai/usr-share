@@ -1,10 +1,12 @@
 class Event < ActiveRecord::Base
   belongs_to :room
   belongs_to :member
-  attr_accessible :name, :description, :url, :member_id, :room_id, :start_time, :duration, :is_promoted
+  attr_accessible :name, :description, :url, :member_id, :room_id, :start_time, :duration, :is_promoted, :policy
   validates_presence_of :name, :room_id, :member_id, :duration, :start_time
   validates :start_time, :event_date => true
+  validates_acceptance_of :policy
   before_save :save_end_time
+  attr_accessor :policy
   
   def end_time
     start_time + duration.hours

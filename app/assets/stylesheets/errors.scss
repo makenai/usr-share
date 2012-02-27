@@ -1,5 +1,10 @@
-.fieldWithErrors {
-  display: inline;
+.fieldWithErrors, .field_with_errors {
+  display: inline-block;
+  background-color: red;
+  padding: 2px;
+  label {
+    color: white !important;
+  }
 }
 
 .error_messages {

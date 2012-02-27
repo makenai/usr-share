@@ -19,17 +19,23 @@
   </p>
   <p>
     <%= f.label :start_time %><br />
-    <%= f.datetime_select :start_time, :default => 24.hours.from_now, :minute_step => 30, :ampm => true %>
+    <%= f.datetime_select :start_time, :default => 24.hours.from_now, :minute_step => 30, :ampm => true, 
+      :order => [ :month, :day, :year, :hour, :minute ] %>
+    <script type="text/javascript">
+      datePickerController.createDatePicker({
+        formElements:{"event_start_time_1i":"Y","event_start_time_2i":"n","event_start_time_3i":"j"},
+        statusFormat:"l-cc-sp-d-sp-F-sp-Y"
+      });
+    </script>
   </p>
   <p>
     <%= f.label :duration %><br />
     <%= f.number_field :duration, :min => 1, :max => current_user.admin? ? 48 : 3, :default => 1 %> hours
   </p>
-<% admin_content do %>
   <p>
-    <%= f.label :is_promoted %><br />
-    <%= f.check_box :is_promoted %>
+    <%= f.label :policy %><br />
+    <%= f.check_box :policy %> &nbsp; By checking this box, I confirm that I have read and agree with the
+      <%= link_to "/usr/lib room reservation policy", reservation_policy_path, :target => '_blank' %>.
   </p>
-<% end %>
   <p><%= f.submit %></p>
 <% end %>

@@ -48,6 +48,7 @@ Usrshare::Application.routes.draw do
     end
   end
   match '/admin' => 'pages#admin'
+  match '/reservation_policy' => 'pages#reservation_policy'  
   match '/share' => 'pages#share', :as => :share_page
 
   # The priority is based upon order of creation:

@@ -29,6 +29,7 @@ group :development do
   gem 'heroku'
   gem 'guard-rspec'
   gem 'growl_notify'
+  gem 'rb-fsevent'
 end
 
 group :test do

@@ -1,0 +1,13 @@
+Hi <%= @event.member.name %>,
+
+<%= @contact.name %> has a question about the event you scheduled on <%= @event.on %>, "<%= @event.name %>".
+
+Their question is below:
+
+================================================================================
+
+<%= @contact.message %>
+
+================================================================================
+
+You may answer them directly by replying to this email. If you believe that this message is inappropriate, please forward or CC to liboard@usrlib.org and we'll do our best to resolve the situation.

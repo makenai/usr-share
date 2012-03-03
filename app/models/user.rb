@@ -17,4 +17,8 @@ class User < ActiveRecord::Base
     self.member.try(:active?) ? true : false
   end
   
+  def best_name
+    self.member? ? self.member.name : self.name
+  end
+  
 end

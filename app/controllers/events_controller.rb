@@ -25,6 +25,7 @@ class EventsController < ApplicationController
 
   def show
     @event = Event.find(params[:id])
+    @contact = Contact.new( :event_id => @event.id )
   end
 
   def new
@@ -38,6 +39,7 @@ class EventsController < ApplicationController
   def create
     @event = Event.new(params[:event])
     @event.member_id = current_user.member.id
+    @event.user_is_admin = current_user.admin?
     if @event.save
       redirect_to @event, :notice => "Successfully created event."
     else
@@ -51,6 +53,7 @@ class EventsController < ApplicationController
 
   def update
     @event = Event.find(params[:id])
+    @event.user_is_admin = current_user.admin?
     if @event.update_attributes(params[:event])
       redirect_to @event, :notice  => "Successfully updated event."
     else

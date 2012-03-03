@@ -24,3 +24,19 @@
 </p>
 <% end %>
 <br />
+
+<% user_content do %>
+<%= form_for @contact, :url => contact_path do |f| %>
+  <%= f.error_messages %>
+
+  <h2>Contact the organizer of this event?</h2>
+  
+  <p>
+    <%= f.label :message, "Your Message" %><br />
+    <%= f.text_area :message, :style => 'height: 200px;' %>
+  </p>
+  <%= f.hidden_field :event_id %>
+  <p><%= submit_tag 'Send' %></p>
+
+<% end %>
+<% end %>

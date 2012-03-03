@@ -3,11 +3,11 @@ class Event < ActiveRecord::Base
   belongs_to :member
   attr_accessible :name, :description, :url, :member_id, :room_id, :start_time, :duration, :is_promoted, :policy, :created_at, :updated_at
   validates_presence_of :name, :room_id, :member_id, :duration, :start_time
-  validates :start_time, :event_date => true
+  validates :start_time, :event_date => true, :unless => Proc.new { |e| e.user_is_admin }
   validates_acceptance_of :policy
   before_save :save_end_time
   after_save :send_event_notification
-  attr_accessor :policy
+  attr_accessor :policy, :user_is_admin
   
   # Events that are not me.
   def other
@@ -24,6 +24,10 @@ class Event < ActiveRecord::Base
   
   def starts_at
     start_time.to_datetime
+  end
+  
+  def on
+    "#{start_time.strftime("%a, %B %d")} from #{start_time.strftime("%I:%M %p")} to #{end_time.strftime("%I:%M %p")}"
   end
   
   def ends_at

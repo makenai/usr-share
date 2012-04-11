@@ -6,8 +6,7 @@ class UserMailer < ActionMailer::Base
     @user = user
     mail(
       :to => user.email,
-      :subject => "Your /usr/lib card is ready!",
-      :bcc => 'pickup@usrlib.org'
+      :subject => "Your /usr/lib card is ready!"
     )
   end
   

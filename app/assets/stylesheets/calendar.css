@@ -72,24 +72,27 @@
 }
 
 #calendar td {
-  position: relative;
 }
 
 #calendar .reserve-link {
-  width: 16px;
-  height: 16px;
   color: green;
   font-weight: bold;
   text-align: center;
-  background-image: url(/assets/datepicker/cal-grey.gif);
-  position: absolute;
-  top: 8px;
-  right: 8px;
   display: none;
+  float: right;
 }
 
+#calendar .reserve-link i {
+  display: inline-block;
+  width: 16px;
+  height: 16px;
+  background-image: url(/assets/datepicker/cal-grey.gif);  
+  vertical-align: text-top;
+}
+
+
 #calendar td:hover .reserve-link {
-  display: inline;
+  display: inline-block;
 }
 
 #calendar .event { color: #000; background:#86a9bb; padding: 2px; margin: 1px; opacity:0.90; }

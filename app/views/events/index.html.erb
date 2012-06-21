@@ -34,14 +34,14 @@
       <%= calendar.head('Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday') %>
       <%= calendar.day(:day_method => :start_time) do |date, events| %>
         <%= date.day %>
+        <% member_content do %>
+          <%= link_to raw('Book it? <i></i>'), new_event_path( :date => date.strftime('%Y-%m-%d') ), :class => 'reserve-link', :title => 'Reserve' %>
+        <% end %>        
         <% events.each do |event| %>
           <div class="event">
             <div class="time"><%= event.starts_at.strftime('%I:%M%p') %> - <%= event.ends_at.strftime('%I:%M%p') %></div>
             <%= link_to event.name.truncate(25), event %>
           </div>
-        <% end %>
-        <% member_content do %>
-          <%= link_to '+', new_event_path( :date => date.strftime('%Y-%m-%d') ), :class => 'reserve-link', :title => 'Reserve' %>
         <% end %>
       <% end %>
     <% end %>

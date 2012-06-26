@@ -30,7 +30,7 @@
   </p>
   <p>
     <%= f.label :duration %><br />
-    <%= f.number_field :duration, :min => 1, :step => 0.5, :max => current_user.admin? ? 48 : 3, :default => 1 %> hours
+    <%= f.number_field :duration, :min => 0.5, :step => 0.5, :max => current_user.admin? ? 48 : 3, :default => 1 %> hours
   </p>
   <p>
     <%= f.label :policy %><br />

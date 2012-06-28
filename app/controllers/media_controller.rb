@@ -98,7 +98,7 @@ class MediaController < ApplicationController
     on_order = MediaLocation.find_by_name('On Order')
     csv = CSV.parse( params[:file].read, :headers => true )
     csv.each do |row|
-      if row[7]
+      # if row[7]
         begin
           if media = Media.amazon_lookup( row[0] )
             media.location_id = on_order.try(:id)
@@ -116,7 +116,7 @@ class MediaController < ApplicationController
         rescue Media::LookupException => e
           puts e.message
         end
-      end
+      # end
     end
     redirect_to media_index_url, :notice => "Imported #{count} items."
   end

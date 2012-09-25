@@ -3,7 +3,7 @@ require 'prawn'
 
 class MembersController < ApplicationController
   
-  before_filter :authenticate_user!
+  before_filter :authenticate_user!, :except => [ :disabled ]
   before_filter :authenticate_admin!, :only => [ :edit, :update, :destroy, :index, :onboard ]
   
   def index
@@ -87,4 +87,5 @@ class MembersController < ApplicationController
     @member.destroy
     redirect_to members_url, :notice => "Successfully destroyed member."
   end
+
 end

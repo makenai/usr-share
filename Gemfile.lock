@@ -6,7 +6,7 @@ GIT
       prawn (~> 0.12.0)
 
 GIT
-  remote: git://github.com/sashaparfenov/table_builder.git
+  remote: git://github.com/makenai/table_builder.git
   revision: a774542544be8aaffba7f4ffd3b6b721f153bab8
   specs:
     table_builder (0.0.2)
@@ -186,7 +186,7 @@ GEM
     sprockets (2.0.3)
       hike (~> 1.2)
       rack (~> 1.0)
-      tilt (!= 1.3.0, ~> 1.1)
+      tilt (~> 1.1, != 1.3.0)
     sqlite3 (1.3.4)
     sunspot (1.2.1)
       escape (= 0.0.4)

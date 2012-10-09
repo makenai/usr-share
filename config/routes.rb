@@ -18,7 +18,6 @@ Usrshare::Application.routes.draw do
   devise_for :users
   resources :users , :only => [ :index ]
   resources :checkins
-  match '/members/new' => 'members#disabled'
   resources :members do
     collection do
       get 'disabled'

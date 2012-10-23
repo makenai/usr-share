@@ -79,8 +79,8 @@ class EventsController < ApplicationController
     return RiCal.Calendar do
       events.each do |e|
         event do
-          summary     e.name
-          description e.description
+          summary     e.name.to_s
+          description e.description.to_s
           dtstart     e.start_time
           dtend       e.start_time + e.duration.hours
           location    "#{e.room.location.name} - #{e.room.name}"

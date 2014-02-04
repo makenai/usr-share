@@ -15,7 +15,7 @@ en:
     failure:
       already_authenticated: 'You are already signed in.'
       unauthenticated: 'You need to sign in or sign up before continuing.'
-      unconfirmed: 'You have to confirm your account before continuing.'
+      unconfirmed: 'We need you to confirm your account before continuing. Just check your inbox for a message from hal9000 and follow the instructions.'
       locked: 'Your account is locked.'
       invalid: 'Invalid email or password.'
       invalid_token: 'Invalid authentication token.'
@@ -40,7 +40,7 @@ en:
       destroyed: 'Bye! Your account was successfully cancelled. We hope to see you again soon.'
       reasons:
         inactive: 'inactive'
-        unconfirmed: 'unconfirmed'
+        unconfirmed: 'unconfirmed. Please check your inbox and follow the confirmation instructions sent by hal900'
         locked: 'locked'
     unlocks:
       send_instructions: 'You will receive an email with instructions about how to unlock your account in a few minutes.'
